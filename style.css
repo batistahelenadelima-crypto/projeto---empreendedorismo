@@ -722,11 +722,12 @@ button:hover {
     }
 }
 
+
 /* ===== PÁGINA DE INSCRIÇÃO ===== */
 
 .pagina-inscricao {
     min-height: 100vh;
-    padding: 50px 20px;
+    padding: 55px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -753,8 +754,8 @@ button:hover {
 
 .caixa-inscricao {
     width: 100%;
-    max-width: 650px;
-    padding: 42px;
+    max-width: 700px;
+    padding: 48px;
     background: #FFFCFD;
     border: 1px solid #F5DCE5;
     border-radius: 28px;
@@ -763,7 +764,7 @@ button:hover {
 
 .cabecalho-inscricao {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 38px;
 }
 
 .cabecalho-inscricao > span {
@@ -789,13 +790,13 @@ button:hover {
 .form-inscricao {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 23px;
 }
 
 .linha-inscricao {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 20px;
 }
 
 .campo-inscricao {
@@ -813,13 +814,14 @@ button:hover {
 .campo-inscricao input,
 .campo-inscricao select {
     width: 100%;
-    padding: 14px 15px;
+    padding: 15px 16px;
     border: 1px solid #E8CCD8;
     border-radius: 13px;
     background: #FFF8FA;
     color: #292333;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
+    transition: 0.2s;
 }
 
 .campo-inscricao input:focus,
@@ -839,7 +841,7 @@ button:hover {
     width: 100%;
     padding: 16px;
     border-radius: 13px;
-    margin-top: 8px;
+    margin-top: 5px;
 }
 
 .mensagem-inscricao {
@@ -855,7 +857,7 @@ button:hover {
 
 @media (max-width: 550px) {
     .caixa-inscricao {
-        padding: 30px 22px;
+        padding: 32px 23px;
     }
 
     .linha-inscricao {
