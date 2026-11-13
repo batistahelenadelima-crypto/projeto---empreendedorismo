@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações | Conecta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="pagina-notificacoes">
+
+        <header class="topo-notificacoes">
+
+            <a href="index.html" class="logo-notificacoes">
+                CONECTA<span>+</span>
+            </a>
+
+            <a href="perfil.html" class="voltar-notificacoes">
+                Meu perfil
+            </a>
+
+        </header>
+
+        <section class="cabecalho-notificacoes">
+
+            <span>FIQUE POR DENTRO</span>
+
+            <h1>Notificações</h1>
+
+            <p>
+                Acompanhe seus avisos, lembretes e novidades
+                do Conecta+ em um só lugar.
+            </p>
+
+        </section>
+
+        <section class="conteudo-notificacoes">
+
+            <div class="titulo-notificacoes">
+
+                <div>
+                    <h2>Seus avisos</h2>
+                    <p>Confira as atualizações do projeto.</p>
+                </div>
+
+                <button id="marcar-todas">
+                    Marcar todas como lidas
+                </button>
+
+            </div>
+
+            <div class="lista-notificacoes" id="lista-notificacoes">
+
+                <article class="notificacao nao-lida">
+
+                    <div class="icone-notificacao">🏐</div>
+
+                    <div class="texto-notificacao">
+
+                        <span class="categoria-notificacao">
+                            ESPORTES
+                        </span>
+
+                        <h3>Lembrete de treino</h3>
+
+                        <p>
+                            Você tem uma atividade esportiva programada
+                            para amanhã. Não se esqueça!
+                        </p>
+
+                        <small>Exemplo de notificação</small>
+
+                    </div>
+
+                    <span class="ponto-notificacao"></span>
+
+                </article>
+
+                <article class="notificacao nao-lida">
+
+                    <div class="icone-notificacao">📚</div>
+
+                    <div class="texto-notificacao">
+
+                        <span class="categoria-notificacao">
+                            ESTUDOS
+                        </span>
+
+                        <h3>Grupo de estudos</h3>
+
+                        <p>
+                            Um encontro de estudos está previsto
+                            para amanhã.
+                        </p>
+
+                        <small>Exemplo de notificação</small>
+
+                    </div>
+
+                    <span class="ponto-notificacao"></span>
+
+                </article>
+
+                <article class="notificacao">
+
+                    <div class="icone-notificacao">✨</div>
+
+                    <div class="texto-notificacao">
+
+                        <span class="categoria-notificacao">
+                            CONECTA+
+                        </span>
+
+                        <h3>Bem-vindo ao Conecta+!</h3>
+
+                        <p>
+                            Aqui você poderá acompanhar seus avisos
+                            e novidades do projeto.
+                        </p>
+
+                        <small>Notificação de boas-vindas</small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="sem-notificacoes" id="sem-notificacoes"
+                style="display: none;">
+
+                <span>🔔</span>
+                <h3>Tudo em dia!</h3>
+                <p>Você não possui notificações pendentes.</p>
+
+            </div>
+
+        </section>
+
+        <footer class="rodape-notificacoes">
+            <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
+        </footer>
+
+    </main>
+
+    <script>
+
+        const botaoMarcarTodas = document.getElementById("marcar-todas");
+
+        const notificacoes = document.querySelectorAll(".notificacao");
+
+        const mensagemVazia = document.getElementById("sem-notificacoes");
+
+        botaoMarcarTodas.addEventListener("click", function () {
+
+            notificacoes.forEach(function (notificacao) {
+
+                notificacao.classList.remove("nao-lida");
+
+                const ponto = notificacao.querySelector(".ponto-notificacao");
+
+                if (ponto) {
+                    ponto.remove();
+                }
+
+            });
+
+            mensagemVazia.style.display = "block";
+
+            botaoMarcarTodas.disabled = true;
+
+            botaoMarcarTodas.textContent = "Todas as notificações foram lidas";
+
+        });
+
+    </script>
+
+</body>
+</html>
