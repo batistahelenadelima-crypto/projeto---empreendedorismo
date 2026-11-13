@@ -352,14 +352,14 @@ if (formularioLogin) {
                 }
 
 
-                if (inscricao.status === "approved") {
+               if (inscricao.status === "approved") {
 
-                    mensagem.textContent =
-                        "Login realizado! Redirecionando...";
+    mensagem.textContent =
+        "Login realizado! Redirecionando...";
 
-                    window.location.href = "index.html";
+    window.location.href = "perfil.html";
 
-                }
+}
 
             } catch (error) {
 
