@@ -312,17 +312,46 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const perfis = await buscarPerfis(ids);
 
-        alunos = perfis.map(function (aluno) {
+      alunos = perfis.map(function (aluno) {
 
-            return {
-                id: aluno.id,
-                nome: aluno.full_name,
-                ano: aluno.school_year,
-                turma: aluno.class_group,
-                participacao: aluno.participation
-            };
+    return {
+        id: aluno.id,
+        nome: aluno.full_name,
+        ano: aluno.school_year,
+        turma: aluno.class_group,
+        participacao: aluno.participation,
+        pontos: 0
+    };
 
-        });
+});
+
+// BUSCAR PONTUAÇÃO DOS ALUNOS
+const idsAlunos = alunos.map(function (aluno) {
+    return aluno.id;
+});
+
+if (idsAlunos.length > 0) {
+
+    const { data: pontuacoes, error: erroPontos } = await db
+        .from("points_ledger")
+        .select("student_id, points")
+        .in("student_id", idsAlunos);
+
+    if (erroPontos) throw erroPontos;
+
+    alunos.forEach(function (aluno) {
+
+        aluno.pontos = (pontuacoes || [])
+            .filter(function (registro) {
+                return registro.student_id === aluno.id;
+            })
+            .reduce(function (total, registro) {
+                return total + Number(registro.points || 0);
+            }, 0);
+
+    });
+
+}
 
         atualizarResumo();
         mostrarAlunos();
@@ -342,29 +371,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // NORMALIZAR PARTICIPAÇÃO
-    function normalizarParticipacao(valor) {
+  function atualizarResumo() {
 
-        const texto = String(valor || "").toLowerCase();
+    document.getElementById("total-alunos").textContent =
+        alunos.length;
 
-        if (
-            texto.includes("ambos") ||
-            texto.includes("both") ||
-            texto.includes("ambas")
-        ) {
-            return "ambos";
-        }
+    const totalPontos = alunos.reduce(function (total, aluno) {
+        return total + aluno.pontos;
+    }, 0);
 
-        if (texto.includes("esporte") || texto.includes("sport")) {
-            return "esportes";
-        }
+    document.getElementById("total-pontos").textContent =
+        totalPontos;
 
-        if (texto.includes("estudo") || texto.includes("study")) {
-            return "estudos";
-        }
+    document.getElementById("total-registros").textContent = "—";
 
-        return texto;
-    }
-
+}
     // MOSTRAR ALUNOS APROVADOS
     function mostrarAlunos() {
 
