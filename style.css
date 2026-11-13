@@ -39,8 +39,8 @@ header h1 span {
 header p {
     font-size: 1.2rem;
     margin-top: 10px;
+    margin-bottom: 20px;
 }
-
 .apresentacao {
     max-width: 750px;
     margin: 60px auto;
