@@ -445,3 +445,17 @@ button:hover {
         padding: 70px 18px;
     }
 }
+
+/* BOTÃO DE VOLTAR */
+
+.voltar {
+    display: inline-block;
+    margin-top: 25px;
+    color: #9D4268;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.voltar:hover {
+    text-decoration: underline;
+}
