@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário | Conecta+</title>
+    <title>Meu calendário | Conecta+</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,56 +14,37 @@
     <main class="pagina-calendario">
 
         <header class="topo-calendario">
-
-            <a href="perfil.html" class="logo-calendario">
+            <a href="index.html" class="logo-perfil">
                 CONECTA<span>+</span>
             </a>
 
-            <a href="perfil.html" class="voltar-calendario">
-                ← Meu perfil
+            <a href="perfil.html" class="sair-perfil">
+                Meu perfil
             </a>
-
         </header>
 
         <section class="boas-vindas-calendario">
-
             <span>ORGANIZE SUA ROTINA</span>
-
-            <h1>Seu tempo, suas conquistas.</h1>
-
+            <h1>Meu calendário</h1>
             <p>
-                Acompanhe os eventos do Conecta+ e organize
-                seus compromissos em um só lugar.
+                Acompanhe as atividades do Conecta+ e organize
+                seus compromissos pessoais em um só lugar.
             </p>
-
         </section>
 
         <section class="area-calendario">
 
-            <div class="titulo-calendario">
-                <span>PLANEJAMENTO</span>
-                <h2>Meu calendário</h2>
-                <p>
-                    Visualize seus compromissos e acompanhe
-                    o que está acontecendo.
-                </p>
+            <div class="cabecalho-calendario">
+                <button type="button" id="mes-anterior"
+                    aria-label="Mês anterior">‹</button>
+
+                <h2 id="mes-ano">Carregando...</h2>
+
+                <button type="button" id="mes-proximo"
+                    aria-label="Próximo mês">›</button>
             </div>
 
-            <div class="painel-calendario">
-
-                <div class="cabecalho-calendario">
-
-                    <div>
-                        <h3 id="mes-ano">Novembro 2026</h3>
-                        <p>Seus compromissos</p>
-                    </div>
-
-                    <div class="controles-calendario">
-                        <button type="button" id="mes-anterior">‹</button>
-                        <button type="button" id="mes-proximo">›</button>
-                    </div>
-
-                </div>
+            <div class="grade-calendario">
 
                 <div class="dias-semana">
                     <span>Dom</span>
@@ -75,140 +56,564 @@
                     <span>Sáb</span>
                 </div>
 
-                <div class="dias-calendario" id="dias-calendario">
-                </div>
+                <div id="dias-calendario" class="dias-calendario"></div>
 
+            </div>
+
+            <div class="legenda-calendario">
+                <span><i class="legenda-esporte"></i> Esportes</span>
+                <span><i class="legenda-estudo"></i> Estudos</span>
+                <span><i class="legenda-pessoal"></i> Pessoal</span>
             </div>
 
         </section>
 
-        <section class="legenda-calendario">
+        <section class="secao-adicionar-evento">
 
             <div class="titulo-calendario">
-                <span>IDENTIFIQUE</span>
-                <h2>Tipos de compromisso</h2>
-            </div>
-
-            <div class="itens-legenda">
-
-                <div><span class="bolinha esporte"></span> Esportes</div>
-
-                <div><span class="bolinha estudo"></span> Estudos</div>
-
-                <div><span class="bolinha pessoal"></span> Pessoal / Escola</div>
-
-            </div>
-
-        </section>
-
-        <section class="eventos-calendario">
-
-            <div class="titulo-calendario">
-                <span>ACOMPANHAMENTO</span>
-                <h2>Próximos compromissos</h2>
+                <span>ORGANIZE-SE</span>
+                <h2>Adicionar compromisso</h2>
                 <p>
-                    Os eventos e atividades cadastrados aparecerão aqui.
+                    Cadastre provas, trabalhos, consultas e outros
+                    compromissos da sua rotina.
                 </p>
             </div>
 
-            <div class="lista-eventos" id="lista-eventos">
+            <form id="form-compromisso" class="form-compromisso">
 
-                <div class="evento-vazio">
-                    <span>📅</span>
-                    <h3>Nenhum compromisso cadastrado</h3>
-                    <p>
-                        Quando houver eventos ou atividades,
-                        eles aparecerão nesta área.
-                    </p>
+                <div class="campo-compromisso">
+                    <label for="evento-titulo">Título do compromisso</label>
+                    <input
+                        type="text"
+                        id="evento-titulo"
+                        maxlength="100"
+                        placeholder="Ex.: Prova de matemática"
+                        required>
                 </div>
 
+                <div class="campo-compromisso">
+                    <label for="evento-descricao">Descrição</label>
+                    <textarea
+                        id="evento-descricao"
+                        maxlength="500"
+                        rows="3"
+                        placeholder="Adicione detalhes, se desejar"></textarea>
+                </div>
+
+                <div class="campos-data-compromisso">
+
+                    <div class="campo-compromisso">
+                        <label for="evento-inicio">Começa em</label>
+                        <input
+                            type="datetime-local"
+                            id="evento-inicio"
+                            required>
+                    </div>
+
+                    <div class="campo-compromisso">
+                        <label for="evento-fim">Termina em</label>
+                        <input
+                            type="datetime-local"
+                            id="evento-fim"
+                            required>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="botao-compromisso">
+                    Adicionar compromisso
+                </button>
+
+                <p id="mensagem-compromisso"
+                    class="mensagem-compromisso"
+                    role="status"></p>
+
+            </form>
+
+        </section>
+
+        <section class="secao-eventos">
+
+            <div class="titulo-calendario">
+                <span>SUA PROGRAMAÇÃO</span>
+                <h2>Próximos compromissos</h2>
+                <p>
+                    Confira o que está programado para os próximos dias.
+                </p>
+            </div>
+
+            <div id="lista-eventos" class="lista-eventos">
+                <p class="aviso-calendario">
+                    Carregando compromissos...
+                </p>
             </div>
 
         </section>
 
-        <footer class="rodape-calendario">
+        <footer class="rodape-perfil">
             <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
         </footer>
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
     <script>
+        document.addEventListener("DOMContentLoaded", async function () {
 
-        const calendario = document.getElementById("dias-calendario");
-        const tituloMes = document.getElementById("mes-ano");
+            const db = window.supabaseClient;
 
-        let dataAtual = new Date();
+            const grade = document.getElementById("dias-calendario");
+            const tituloMes = document.getElementById("mes-ano");
+            const listaEventos = document.getElementById("lista-eventos");
 
-        function mostrarCalendario() {
+            const formulario = document.getElementById("form-compromisso");
+            const campoTitulo = document.getElementById("evento-titulo");
+            const campoDescricao = document.getElementById("evento-descricao");
+            const campoInicio = document.getElementById("evento-inicio");
+            const campoFim = document.getElementById("evento-fim");
+            const mensagem = document.getElementById("mensagem-compromisso");
 
-            const ano = dataAtual.getFullYear();
-            const mes = dataAtual.getMonth();
+            const botaoAnterior = document.getElementById("mes-anterior");
+            const botaoProximo = document.getElementById("mes-proximo");
 
-            const primeiroDia = new Date(ano, mes, 1).getDay();
-            const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+            let usuarioAtual = null;
+            let mesExibido = new Date();
+            let atividadesProjeto = [];
+            let compromissosPessoais = [];
 
-            const nomeMes = dataAtual.toLocaleDateString("pt-BR", {
-                month: "long",
-                year: "numeric"
-            });
+            const nomesMeses = [
+                "Janeiro", "Fevereiro", "Março", "Abril",
+                "Maio", "Junho", "Julho", "Agosto",
+                "Setembro", "Outubro", "Novembro", "Dezembro"
+            ];
 
-            tituloMes.textContent =
-                nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+            function criarElemento(tag, classe, texto) {
+                const elemento = document.createElement(tag);
 
-            calendario.innerHTML = "";
-
-            for (let i = 0; i < primeiroDia; i++) {
-
-                const vazio = document.createElement("div");
-                vazio.classList.add("dia-vazio");
-
-                calendario.appendChild(vazio);
-
-            }
-
-            for (let dia = 1; dia <= ultimoDia; dia++) {
-
-                const elemento = document.createElement("div");
-
-                elemento.classList.add("dia-calendario");
-                elemento.textContent = dia;
-
-                const hoje = new Date();
-
-                if (
-                    dia === hoje.getDate() &&
-                    mes === hoje.getMonth() &&
-                    ano === hoje.getFullYear()
-                ) {
-                    elemento.classList.add("dia-hoje");
+                if (classe) {
+                    elemento.className = classe;
                 }
 
-                calendario.appendChild(elemento);
+                if (texto !== undefined) {
+                    elemento.textContent = texto;
+                }
 
+                return elemento;
             }
 
-        }
+            function chaveData(data) {
+                const ano = data.getFullYear();
+                const mes = String(data.getMonth() + 1).padStart(2, "0");
+                const dia = String(data.getDate()).padStart(2, "0");
 
-        document.getElementById("mes-anterior").addEventListener(
-            "click", function() {
-
-                dataAtual.setMonth(dataAtual.getMonth() - 1);
-                mostrarCalendario();
-
+                return `${ano}-${mes}-${dia}`;
             }
-        );
 
-        document.getElementById("mes-proximo").addEventListener(
-            "click", function() {
-
-                dataAtual.setMonth(dataAtual.getMonth() + 1);
-                mostrarCalendario();
-
+            function formatarData(data) {
+                return new Date(data).toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
             }
-        );
 
-        mostrarCalendario();
+            function formatarDataLocalParaISO(valor) {
+                return new Date(valor).toISOString();
+            }
 
+            function mostrarMensagem(texto, erro = false) {
+                mensagem.textContent = texto;
+                mensagem.classList.toggle("mensagem-erro", erro);
+                mensagem.classList.toggle("mensagem-sucesso", !erro);
+            }
+
+            function todosOsEventos() {
+                const eventosProjeto = atividadesProjeto.map(atividade => ({
+                    id: atividade.id,
+                    title: atividade.title,
+                    description: atividade.description,
+                    starts_at: atividade.starts_at,
+                    ends_at: atividade.ends_at,
+                    category: atividade.category,
+                    tipo: "projeto"
+                }));
+
+                const eventosPessoais = compromissosPessoais.map(evento => ({
+                    ...evento,
+                    tipo: "pessoal"
+                }));
+
+                return [...eventosProjeto, ...eventosPessoais]
+                    .filter(evento => evento.starts_at)
+                    .sort((a, b) =>
+                        new Date(a.starts_at) - new Date(b.starts_at)
+                    );
+            }
+
+            async function carregarEventos() {
+
+                const resultadoPessoal = await db
+                    .from("personal_events")
+                    .select("id, user_id, title, description, starts_at, ends_at, created_at")
+                    .eq("user_id", usuarioAtual.id)
+                    .order("starts_at", { ascending: true });
+
+                if (resultadoPessoal.error) {
+                    console.error(resultadoPessoal.error);
+                    listaEventos.textContent =
+                        "Não foi possível carregar seus compromissos.";
+                    return;
+                }
+
+                compromissosPessoais = resultadoPessoal.data || [];
+
+                const resultadoAtividades = await db
+                    .from("activities")
+                    .select("id, title, description, category, starts_at, ends_at, is_active")
+                    .eq("is_active", true)
+                    .order("starts_at", { ascending: true });
+
+                if (resultadoAtividades.error) {
+                    console.error(resultadoAtividades.error);
+
+                    atividadesProjeto = [];
+
+                    listaEventos.textContent =
+                        "Seus compromissos pessoais foram carregados, mas não foi possível buscar as atividades do projeto.";
+                } else {
+                    atividadesProjeto = resultadoAtividades.data || [];
+                }
+
+                desenharCalendario();
+                mostrarListaEventos();
+            }
+
+            function desenharCalendario() {
+
+                grade.replaceChildren();
+
+                const ano = mesExibido.getFullYear();
+                const mes = mesExibido.getMonth();
+
+                tituloMes.textContent = `${nomesMeses[mes]} de ${ano}`;
+
+                const primeiroDia = new Date(ano, mes, 1).getDay();
+                const quantidadeDias = new Date(ano, mes + 1, 0).getDate();
+
+                const eventos = todosOsEventos();
+
+                for (let i = 0; i < primeiroDia; i++) {
+                    grade.appendChild(
+                        criarElemento("div", "dia-calendario vazio")
+                    );
+                }
+
+                for (let dia = 1; dia <= quantidadeDias; dia++) {
+
+                    const dataAtual = new Date(ano, mes, dia);
+                    const chave = chaveData(dataAtual);
+
+                    const eventosDoDia = eventos.filter(evento =>
+                        chaveData(new Date(evento.starts_at)) === chave
+                    );
+
+                    const cartaoDia = criarElemento("div", "dia-calendario");
+
+                    const numero = criarElemento("span", "numero-dia", dia);
+                    cartaoDia.appendChild(numero);
+
+                    if (chave === chaveData(new Date())) {
+                        cartaoDia.classList.add("dia-hoje");
+                    }
+
+                    const marcadores = criarElemento("div", "marcadores-dia");
+
+                    const categorias = new Set(
+                        eventosDoDia.map(evento => {
+                            if (evento.tipo === "pessoal") {
+                                return "pessoal";
+                            }
+
+                            return evento.category;
+                        })
+                    );
+
+                    categorias.forEach(categoria => {
+                        let classe = "marcador-pessoal";
+
+                        if (categoria === "esporte") {
+                            classe = "marcador-esporte";
+                        } else if (categoria === "estudo") {
+                            classe = "marcador-estudo";
+                        }
+
+                        marcadores.appendChild(
+                            criarElemento("span", classe)
+                        );
+                    });
+
+                    cartaoDia.appendChild(marcadores);
+
+                    if (eventosDoDia.length > 0) {
+                        cartaoDia.title = eventosDoDia
+                            .map(evento => evento.title)
+                            .join(", ");
+                    }
+
+                    grade.appendChild(cartaoDia);
+                }
+            }
+
+            function mostrarListaEventos() {
+
+                listaEventos.replaceChildren();
+
+                const agora = new Date();
+
+                const proximos = todosOsEventos()
+                    .filter(evento => new Date(evento.starts_at) >= agora)
+                    .slice(0, 15);
+
+                if (proximos.length === 0) {
+                    listaEventos.appendChild(
+                        criarElemento(
+                            "p",
+                            "aviso-calendario",
+                            "Você ainda não tem próximos compromissos."
+                        )
+                    );
+                    return;
+                }
+
+                proximos.forEach(evento => {
+
+                    const cartao = criarElemento("article", "cartao-evento");
+
+                    let categoria = "Pessoal";
+                    let classe = "tipo-pessoal";
+
+                    if (evento.tipo === "projeto") {
+                        if (evento.category === "esporte") {
+                            categoria = "Esportes";
+                            classe = "tipo-esporte";
+                        } else {
+                            categoria = "Estudos";
+                            classe = "tipo-estudo";
+                        }
+                    }
+
+                    const topo = criarElemento("div", "topo-cartao-evento");
+
+                    topo.appendChild(
+                        criarElemento("span", `tipo-evento ${classe}`, categoria)
+                    );
+
+                    const titulo = criarElemento("h3", "", evento.title);
+
+                    const data = criarElemento(
+                        "p",
+                        "data-evento",
+                        formatarData(evento.starts_at)
+                    );
+
+                    cartao.appendChild(topo);
+                    cartao.appendChild(titulo);
+                    cartao.appendChild(data);
+
+                    if (evento.ends_at) {
+                        cartao.appendChild(
+                            criarElemento(
+                                "p",
+                                "data-evento",
+                                `Até ${formatarData(evento.ends_at)}`
+                            )
+                        );
+                    }
+
+                    if (evento.description) {
+                        cartao.appendChild(
+                            criarElemento(
+                                "p",
+                                "descricao-evento",
+                                evento.description
+                            )
+                        );
+                    }
+
+                    if (evento.tipo === "pessoal") {
+
+                        const botaoExcluir = criarElemento(
+                            "button",
+                            "botao-excluir-evento",
+                            "Excluir compromisso"
+                        );
+
+                        botaoExcluir.type = "button";
+                        botaoExcluir.dataset.id = evento.id;
+
+                        botaoExcluir.addEventListener("click", () => {
+                            excluirCompromisso(evento.id, botaoExcluir);
+                        });
+
+                        cartao.appendChild(botaoExcluir);
+                    }
+
+                    listaEventos.appendChild(cartao);
+                });
+            }
+
+            async function excluirCompromisso(id, botao) {
+
+                const confirmar = window.confirm(
+                    "Deseja realmente excluir este compromisso?"
+                );
+
+                if (!confirmar) {
+                    return;
+                }
+
+                botao.disabled = true;
+                botao.textContent = "Excluindo...";
+
+                const { error } = await db
+                    .from("personal_events")
+                    .delete()
+                    .eq("id", id)
+                    .eq("user_id", usuarioAtual.id);
+
+                if (error) {
+                    console.error(error);
+                    alert("Não foi possível excluir o compromisso.");
+                    botao.disabled = false;
+                    botao.textContent = "Excluir compromisso";
+                    return;
+                }
+
+                await carregarEventos();
+            }
+
+            formulario.addEventListener("submit", async function (event) {
+
+                event.preventDefault();
+
+                const titulo = campoTitulo.value.trim();
+                const descricao = campoDescricao.value.trim();
+                const inicio = campoInicio.value;
+                const fim = campoFim.value;
+
+                if (!titulo || !inicio || !fim) {
+                    mostrarMensagem(
+                        "Preencha o título, o início e o término.",
+                        true
+                    );
+                    return;
+                }
+
+                const dataInicio = new Date(inicio);
+                const dataFim = new Date(fim);
+
+                if (
+                    Number.isNaN(dataInicio.getTime()) ||
+                    Number.isNaN(dataFim.getTime()) ||
+                    dataFim <= dataInicio
+                ) {
+                    mostrarMensagem(
+                        "O término precisa ser posterior ao início.",
+                        true
+                    );
+                    return;
+                }
+
+                const botao = formulario.querySelector(
+                    'button[type="submit"]'
+                );
+
+                botao.disabled = true;
+                botao.textContent = "Salvando...";
+
+                const { error } = await db
+                    .from("personal_events")
+                    .insert({
+                        user_id: usuarioAtual.id,
+                        title: titulo,
+                        description: descricao || null,
+                        starts_at: formatarDataLocalParaISO(inicio),
+                        ends_at: formatarDataLocalParaISO(fim)
+                    });
+
+                botao.disabled = false;
+                botao.textContent = "Adicionar compromisso";
+
+                if (error) {
+                    console.error(error);
+                    mostrarMensagem(
+                        "Não foi possível salvar. Verifique as permissões da tabela.",
+                        true
+                    );
+                    return;
+                }
+
+                formulario.reset();
+
+                mostrarMensagem(
+                    "Compromisso adicionado com sucesso!"
+                );
+
+                await carregarEventos();
+            });
+
+            botaoAnterior.addEventListener("click", function () {
+                mesExibido = new Date(
+                    mesExibido.getFullYear(),
+                    mesExibido.getMonth() - 1,
+                    1
+                );
+
+                desenharCalendario();
+            });
+
+            botaoProximo.addEventListener("click", function () {
+                mesExibido = new Date(
+                    mesExibido.getFullYear(),
+                    mesExibido.getMonth() + 1,
+                    1
+                );
+
+                desenharCalendario();
+            });
+
+            // Verificar se existe uma sessão ativa
+            const { data: sessaoData, error: erroSessao } =
+                await db.auth.getSession();
+
+            if (erroSessao || !sessaoData.session) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            usuarioAtual = sessaoData.session.user;
+
+            // Verificar se a inscrição do estudante foi aprovada
+            const { data: inscricao, error: erroInscricao } = await db
+                .from("enrollments")
+                .select("status")
+                .eq("student_id", usuarioAtual.id)
+                .maybeSingle();
+
+            if (erroInscricao || !inscricao || inscricao.status !== "approved") {
+                alert("Você precisa ter uma inscrição aprovada para acessar o calendário.");
+                await db.auth.signOut();
+                window.location.href = "login.html";
+                return;
+            }
+
+            await carregarEventos();
+
+        });
     </script>
 
 </body>
