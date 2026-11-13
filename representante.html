@@ -121,34 +121,157 @@
                 </article>
 
             </div>
-<!-- INSCRIÇÕES PENDENTES -->
 
-<section class="secao-inscricoes-representante">
+            <!-- INSCRIÇÕES PENDENTES -->
 
-    <div class="titulo-painel-representante">
+            <section class="secao-inscricoes-representante">
 
-        <div>
-            <span>ANÁLISE DE CADASTROS</span>
+                <div class="titulo-painel-representante">
 
-            <h2>Inscrições pendentes</h2>
+                    <div>
+                        <span>ANÁLISE DE CADASTROS</span>
 
-            <p>
-                Analise os pedidos de participação
-                antes de liberar o acesso dos alunos.
-            </p>
-        </div>
+                        <h2>Inscrições pendentes</h2>
 
-    </div>
+                        <p>
+                            Analise os pedidos de participação
+                            antes de liberar o acesso dos alunos.
+                        </p>
+                    </div>
 
-    <div
-        class="lista-inscricoes-representante"
-        id="lista-inscricoes">
+                </div>
 
-        <p>Carregando inscrições...</p>
+                <div
+                    class="lista-inscricoes-representante"
+                    id="lista-inscricoes">
 
-    </div>
+                    <p>Carregando inscrições...</p>
 
-</section>
+                </div>
+
+            </section>
+
+            <!-- GERENCIAMENTO DE ATIVIDADES -->
+
+            <section class="secao-atividades-representante">
+
+                <div class="titulo-painel-representante">
+
+                    <div>
+                        <span>GERENCIAMENTO</span>
+
+                        <h2>Atividades</h2>
+
+                        <p>
+                            Cadastre atividades de esporte e estudo
+                            para os alunos.
+                        </p>
+                    </div>
+
+                </div>
+
+                <form id="form-nova-atividade" class="form-nova-atividade">
+
+                    <div class="campo-atividade">
+
+                        <label for="atividade-titulo">
+                            Nome da atividade
+                        </label>
+
+                        <input
+                            type="text"
+                            id="atividade-titulo"
+                            placeholder="Ex.: Treino de vôlei"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="campo-atividade">
+
+                        <label for="atividade-descricao">
+                            Descrição
+                        </label>
+
+                        <textarea
+                            id="atividade-descricao"
+                            placeholder="Descreva a atividade..."
+                        ></textarea>
+
+                    </div>
+
+                    <div class="campo-atividade">
+
+                        <label for="atividade-categoria">
+                            Categoria
+                        </label>
+
+                        <select id="atividade-categoria" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="esporte">
+                                Esporte
+                            </option>
+
+                            <option value="estudo">
+                                Estudo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo-atividade">
+
+                        <label for="atividade-inicio">
+                            Data e horário de início
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="atividade-inicio"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="campo-atividade">
+
+                        <label for="atividade-fim">
+                            Data e horário de término
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="atividade-fim"
+                            required
+                        >
+
+                    </div>
+
+                    <button type="submit" class="botao-aprovar">
+                        Cadastrar atividade
+                    </button>
+
+                    <p id="mensagem-atividade" aria-live="polite"></p>
+
+                </form>
+
+                <div
+                    class="lista-atividades-representante"
+                    id="lista-atividades">
+
+                    <p>
+                        As atividades cadastradas aparecerão aqui.
+                    </p>
+
+                </div>
+
+            </section>
+
             <!-- LISTA DE ALUNOS -->
 
             <section class="secao-alunos-representante">
