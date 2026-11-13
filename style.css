@@ -303,3 +303,145 @@ button:hover {
         letter-spacing: -3px;
     }
 }
+
+
+/* ===== ACESSO E INSCRIÇÃO ===== */
+
+.acesso {
+    padding: 100px 30px;
+    background: #FFFCFD;
+    text-align: center;
+}
+
+.opcoes-acesso {
+    max-width: 950px;
+    margin: 50px auto 80px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.cartao-acesso {
+    padding: 40px 30px;
+    border: 1px solid #F5DCE5;
+    border-radius: 25px;
+    background: #FFF8FA;
+    box-shadow: 0 12px 30px rgba(157, 66, 104, 0.07);
+}
+
+.destaque-acesso {
+    background: #FCE8EF;
+}
+
+.icone-acesso {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cartao-acesso h3,
+.formulario h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.cartao-acesso p {
+    color: #625966;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.botao-acesso {
+    display: inline-block;
+    padding: 13px 25px;
+    background: #E96791;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.botao-acesso:hover {
+    background: #9D4268;
+    transform: translateY(-3px);
+}
+
+.formularios-acesso {
+    max-width: 750px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.formulario {
+    background: #FFF8FA;
+    padding: 40px;
+    border: 1px solid #F5DCE5;
+    border-radius: 25px;
+    text-align: left;
+    scroll-margin-top: 30px;
+}
+
+.formulario > p {
+    color: #625966;
+    margin-bottom: 25px;
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario label {
+    color: #514956;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.formulario input,
+.formulario select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #E8CCD8;
+    border-radius: 12px;
+    background: #FFFCFD;
+    color: #292333;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: 2px solid #E96791;
+    border-color: transparent;
+}
+
+.formulario button {
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.mensagem-formulario {
+    color: #9D4268;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 750px) {
+    .opcoes-acesso {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .formulario {
+        padding: 28px 20px;
+    }
+
+    .acesso {
+        padding: 70px 18px;
+    }
+}
