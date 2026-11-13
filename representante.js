@@ -139,9 +139,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const { data: inscricoes, error } = await db
             .from("enrollments")
-            .select("id, student_id, status, created_at")
-            .eq("status", "pending")
-            .order("created_at", { ascending: true });
+            .select("id, student_id, status")
+            .eq("status", "pending");
 
         if (error) throw error;
 
