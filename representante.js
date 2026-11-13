@@ -1,4 +1,4 @@
-  
+
 document.addEventListener("DOMContentLoaded", async function () {
 
     const db = window.supabaseClient;
@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const mensagemAtividade = document.getElementById("mensagem-atividade");
 
     let alunos = [];
+    let atividades = [];
 
     // VERIFICAR CONEXÃO
     if (!db) {
@@ -480,6 +481,187 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     }
 
+    // CRIAR CONTROLES DE PRESENÇA E CONCLUSÃO
+    function criarControlesRegistro(aluno) {
+
+        const area = document.createElement("div");
+        area.className = "registro-atividade-aluno";
+
+        const titulo = criarTexto(
+            "h4",
+            "",
+            "Registrar participação"
+        );
+
+        area.appendChild(titulo);
+
+        const seletor = document.createElement("select");
+        seletor.className = "seletor-atividade-aluno";
+
+        const opcaoInicial = document.createElement("option");
+        opcaoInicial.value = "";
+        opcaoInicial.textContent = "Selecione uma atividade";
+        seletor.appendChild(opcaoInicial);
+
+        const atividadesAtivas = atividades.filter(function (atividade) {
+            return atividade.is_active === true;
+        });
+
+        atividadesAtivas.forEach(function (atividade) {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = atividade.id;
+
+            const categoria =
+                atividade.category === "esporte" ? "Esporte" : "Estudo";
+
+            opcao.textContent =
+                `${atividade.title} — ${categoria}`;
+
+            seletor.appendChild(opcao);
+
+        });
+
+        area.appendChild(seletor);
+
+        const botoes = document.createElement("div");
+        botoes.className = "botoes-registro-atividade";
+
+        const botaoPresenca = document.createElement("button");
+        botaoPresenca.type = "button";
+        botaoPresenca.textContent = "Registrar presença";
+        botaoPresenca.className = "botao-registrar-presenca";
+
+        const botaoConclusao = document.createElement("button");
+        botaoConclusao.type = "button";
+        botaoConclusao.textContent = "Registrar conclusão";
+        botaoConclusao.className = "botao-registrar-conclusao";
+
+        const mensagem = criarTexto(
+            "p",
+            "mensagem-registro-atividade",
+            atividadesAtivas.length
+                ? ""
+                : "Cadastre uma atividade ativa para liberar os registros."
+        );
+
+        botaoPresenca.disabled = atividadesAtivas.length === 0;
+        botaoConclusao.disabled = atividadesAtivas.length === 0;
+
+        botaoPresenca.addEventListener("click", function () {
+
+            registrarAtividade(
+                aluno,
+                seletor,
+                "attendance",
+                botaoPresenca,
+                botaoConclusao,
+                mensagem
+            );
+
+        });
+
+        botaoConclusao.addEventListener("click", function () {
+
+            registrarAtividade(
+                aluno,
+                seletor,
+                "completion",
+                botaoPresenca,
+                botaoConclusao,
+                mensagem
+            );
+
+        });
+
+        botoes.appendChild(botaoPresenca);
+        botoes.appendChild(botaoConclusao);
+
+        area.appendChild(botoes);
+        area.appendChild(mensagem);
+
+        return area;
+
+    }
+
+    // REGISTRAR PRESENÇA OU CONCLUSÃO NO BANCO
+    async function registrarAtividade(
+        aluno,
+        seletor,
+        tipo,
+        botaoPresenca,
+        botaoConclusao,
+        mensagem
+    ) {
+
+        const atividadeId = seletor.value;
+
+        if (!atividadeId) {
+
+            mensagem.textContent =
+                "Selecione uma atividade antes de registrar.";
+
+            return;
+
+        }
+
+        const nomeRegistro = tipo === "attendance"
+            ? "presença"
+            : "conclusão da atividade";
+
+        if (!window.confirm(
+            `Deseja registrar ${nomeRegistro} para ${aluno.nome}?`
+        )) {
+            return;
+        }
+
+        botaoPresenca.disabled = true;
+        botaoConclusao.disabled = true;
+
+        mensagem.textContent = "Salvando registro...";
+
+        try {
+
+            const { data, error } = await db.rpc(
+                "register_activity_record",
+                {
+                    p_activity_id: atividadeId,
+                    p_student_id: aluno.id,
+                    p_record_type: tipo
+                }
+            );
+
+            if (error) throw error;
+
+            if (data !== true) {
+                throw new Error("O registro não foi confirmado.");
+            }
+
+            alert(
+                tipo === "attendance"
+                    ? "Presença registrada com sucesso!"
+                    : "Conclusão registrada com sucesso!"
+            );
+
+            await carregarAlunos();
+
+        } catch (erro) {
+
+            console.error("Erro ao registrar atividade:", erro);
+
+            mensagem.textContent =
+                erro.message && erro.message.includes("já foi realizado")
+                    ? "Este registro já foi realizado para essa atividade."
+                    : "Não foi possível registrar. Verifique os dados e tente novamente.";
+
+            botaoPresenca.disabled = false;
+            botaoConclusao.disabled = false;
+
+        }
+
+    }
+
     // MOSTRAR ALUNOS APROVADOS
     function mostrarAlunos() {
 
@@ -560,6 +742,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             informacoes.appendChild(pontos);
 
             cartao.appendChild(informacoes);
+
+            // CONTROLES DE REGISTRO
+            cartao.appendChild(
+                criarControlesRegistro(aluno)
+            );
+
             listaAlunos.appendChild(cartao);
 
         });
@@ -584,15 +772,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         listaAtividades.innerHTML =
             "<p>Carregando atividades...</p>";
 
-        const { data: atividades, error } = await db.rpc(
+        const { data: dadosAtividades, error } = await db.rpc(
             "get_activities_for_staff"
         );
 
         if (error) throw error;
 
+        atividades = dadosAtividades || [];
+
         listaAtividades.innerHTML = "";
 
-        if (!atividades || atividades.length === 0) {
+        if (atividades.length === 0) {
 
             listaAtividades.innerHTML = `
                 <div class="nenhum-aluno">
@@ -601,64 +791,67 @@ document.addEventListener("DOMContentLoaded", async function () {
                 </div>
             `;
 
-            return;
+        } else {
+
+            atividades.forEach(function (atividade) {
+
+                const cartao = document.createElement("article");
+                cartao.className = "cartao-aluno-representante";
+
+                const dados = document.createElement("div");
+
+                const categoria =
+                    atividade.category === "esporte" ? "Esporte" : "Estudo";
+
+                dados.appendChild(
+                    criarTexto("h3", "", atividade.title)
+                );
+
+                dados.appendChild(
+                    criarTexto("p", "", `Categoria: ${categoria}`)
+                );
+
+                dados.appendChild(
+                    criarTexto(
+                        "p",
+                        "",
+                        atividade.description || "Sem descrição."
+                    )
+                );
+
+                dados.appendChild(
+                    criarTexto(
+                        "p",
+                        "",
+                        `Início: ${formatarData(atividade.starts_at)}`
+                    )
+                );
+
+                dados.appendChild(
+                    criarTexto(
+                        "p",
+                        "",
+                        `Término: ${formatarData(atividade.ends_at)}`
+                    )
+                );
+
+                dados.appendChild(
+                    criarTexto(
+                        "p",
+                        "",
+                        atividade.is_active ? "Atividade ativa" : "Atividade inativa"
+                    )
+                );
+
+                cartao.appendChild(dados);
+                listaAtividades.appendChild(cartao);
+
+            });
 
         }
 
-        atividades.forEach(function (atividade) {
-
-            const cartao = document.createElement("article");
-            cartao.className = "cartao-aluno-representante";
-
-            const dados = document.createElement("div");
-
-            const categoria =
-                atividade.category === "esporte" ? "Esporte" : "Estudo";
-
-            dados.appendChild(
-                criarTexto("h3", "", atividade.title)
-            );
-
-            dados.appendChild(
-                criarTexto("p", "", `Categoria: ${categoria}`)
-            );
-
-            dados.appendChild(
-                criarTexto(
-                    "p",
-                    "",
-                    atividade.description || "Sem descrição."
-                )
-            );
-
-            dados.appendChild(
-                criarTexto(
-                    "p",
-                    "",
-                    `Início: ${formatarData(atividade.starts_at)}`
-                )
-            );
-
-            dados.appendChild(
-                criarTexto(
-                    "p",
-                    "",
-                    `Término: ${formatarData(atividade.ends_at)}`
-                )
-            );
-
-            dados.appendChild(
-                criarTexto(
-                    "p",
-                    "",
-                    atividade.is_active ? "Atividade ativa" : "Atividade inativa"
-                )
-            );
-
-            cartao.appendChild(dados);
-            listaAtividades.appendChild(cartao);
-
-        });
+        // ATUALIZAR OS CONTROLES DOS CARTÕES DE ALUNOS
+        mostrarAlunos();
 
     }
 
