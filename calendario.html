@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário | Conecta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="pagina-calendario">
+
+        <header class="topo-calendario">
+
+            <a href="perfil.html" class="logo-calendario">
+                CONECTA<span>+</span>
+            </a>
+
+            <a href="perfil.html" class="voltar-calendario">
+                ← Meu perfil
+            </a>
+
+        </header>
+
+        <section class="boas-vindas-calendario">
+
+            <span>ORGANIZE SUA ROTINA</span>
+
+            <h1>Seu tempo, suas conquistas.</h1>
+
+            <p>
+                Acompanhe os eventos do Conecta+ e organize
+                seus compromissos em um só lugar.
+            </p>
+
+        </section>
+
+        <section class="area-calendario">
+
+            <div class="titulo-calendario">
+                <span>PLANEJAMENTO</span>
+                <h2>Meu calendário</h2>
+                <p>
+                    Visualize seus compromissos e acompanhe
+                    o que está acontecendo.
+                </p>
+            </div>
+
+            <div class="painel-calendario">
+
+                <div class="cabecalho-calendario">
+
+                    <div>
+                        <h3 id="mes-ano">Novembro 2026</h3>
+                        <p>Seus compromissos</p>
+                    </div>
+
+                    <div class="controles-calendario">
+                        <button type="button" id="mes-anterior">‹</button>
+                        <button type="button" id="mes-proximo">›</button>
+                    </div>
+
+                </div>
+
+                <div class="dias-semana">
+                    <span>Dom</span>
+                    <span>Seg</span>
+                    <span>Ter</span>
+                    <span>Qua</span>
+                    <span>Qui</span>
+                    <span>Sex</span>
+                    <span>Sáb</span>
+                </div>
+
+                <div class="dias-calendario" id="dias-calendario">
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="legenda-calendario">
+
+            <div class="titulo-calendario">
+                <span>IDENTIFIQUE</span>
+                <h2>Tipos de compromisso</h2>
+            </div>
+
+            <div class="itens-legenda">
+
+                <div><span class="bolinha esporte"></span> Esportes</div>
+
+                <div><span class="bolinha estudo"></span> Estudos</div>
+
+                <div><span class="bolinha pessoal"></span> Pessoal / Escola</div>
+
+            </div>
+
+        </section>
+
+        <section class="eventos-calendario">
+
+            <div class="titulo-calendario">
+                <span>ACOMPANHAMENTO</span>
+                <h2>Próximos compromissos</h2>
+                <p>
+                    Os eventos e atividades cadastrados aparecerão aqui.
+                </p>
+            </div>
+
+            <div class="lista-eventos" id="lista-eventos">
+
+                <div class="evento-vazio">
+                    <span>📅</span>
+                    <h3>Nenhum compromisso cadastrado</h3>
+                    <p>
+                        Quando houver eventos ou atividades,
+                        eles aparecerão nesta área.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="rodape-calendario">
+            <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
+        </footer>
+
+    </main>
+
+    <script>
+
+        const calendario = document.getElementById("dias-calendario");
+        const tituloMes = document.getElementById("mes-ano");
+
+        let dataAtual = new Date();
+
+        function mostrarCalendario() {
+
+            const ano = dataAtual.getFullYear();
+            const mes = dataAtual.getMonth();
+
+            const primeiroDia = new Date(ano, mes, 1).getDay();
+            const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+
+            const nomeMes = dataAtual.toLocaleDateString("pt-BR", {
+                month: "long",
+                year: "numeric"
+            });
+
+            tituloMes.textContent =
+                nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+
+            calendario.innerHTML = "";
+
+            for (let i = 0; i < primeiroDia; i++) {
+
+                const vazio = document.createElement("div");
+                vazio.classList.add("dia-vazio");
+
+                calendario.appendChild(vazio);
+
+            }
+
+            for (let dia = 1; dia <= ultimoDia; dia++) {
+
+                const elemento = document.createElement("div");
+
+                elemento.classList.add("dia-calendario");
+                elemento.textContent = dia;
+
+                const hoje = new Date();
+
+                if (
+                    dia === hoje.getDate() &&
+                    mes === hoje.getMonth() &&
+                    ano === hoje.getFullYear()
+                ) {
+                    elemento.classList.add("dia-hoje");
+                }
+
+                calendario.appendChild(elemento);
+
+            }
+
+        }
+
+        document.getElementById("mes-anterior").addEventListener(
+            "click", function() {
+
+                dataAtual.setMonth(dataAtual.getMonth() - 1);
+                mostrarCalendario();
+
+            }
+        );
+
+        document.getElementById("mes-proximo").addEventListener(
+            "click", function() {
+
+                dataAtual.setMonth(dataAtual.getMonth() + 1);
+                mostrarCalendario();
+
+            }
+        );
+
+        mostrarCalendario();
+
+    </script>
+
+</body>
+</html>
