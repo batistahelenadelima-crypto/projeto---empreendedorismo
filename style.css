@@ -2766,3 +2766,156 @@ button:hover {
     }
 
 }
+
+/* ========================================
+   GERENCIAMENTO DE ATIVIDADES
+======================================== */
+
+.secao-atividades-representante {
+    margin-bottom: 40px;
+}
+
+.form-nova-atividade {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 18px;
+    padding: 26px;
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 4px 14px rgba(157, 66, 104, 0.06);
+}
+
+.campo-atividade {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-atividade label {
+    color: #292333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo-atividade input,
+.campo-atividade textarea,
+.campo-atividade select {
+    width: 100%;
+    border: 1px solid #E9D5DE;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #FFFCFD;
+    color: #292333;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-atividade textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.campo-atividade input:focus,
+.campo-atividade textarea:focus,
+.campo-atividade select:focus {
+    border-color: #E96791;
+    box-shadow: 0 0 0 3px rgba(233, 103, 145, 0.12);
+}
+
+.form-nova-atividade > button {
+    align-self: flex-start;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 24px;
+    background: #E96791;
+    color: #FFFCFD;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.form-nova-atividade > button:hover {
+    background: #9D4268;
+    transform: translateY(-1px);
+}
+
+.form-nova-atividade > button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#mensagem-atividade {
+    color: #9D4268;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.lista-atividades-representante {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.lista-atividades-representante .cartao-aluno-representante {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 4px 14px rgba(157, 66, 104, 0.06);
+}
+
+.lista-atividades-representante .cartao-aluno-representante h3 {
+    color: #9D4268;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.lista-atividades-representante .cartao-aluno-representante p {
+    color: #6F6572;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+.lista-atividades-representante .nenhum-aluno {
+    background: #FFFCFD;
+    border: 1px dashed #E9B9CA;
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+}
+
+.lista-atividades-representante .nenhum-aluno h3 {
+    color: #9D4268;
+    margin-bottom: 8px;
+}
+
+.lista-atividades-representante .nenhum-aluno p {
+    color: #6F6572;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+    .form-nova-atividade {
+        padding: 18px;
+    }
+
+    .form-nova-atividade > button {
+        width: 100%;
+    }
+
+    .lista-atividades-representante .cartao-aluno-representante {
+        padding: 17px;
+    }
+
+}
