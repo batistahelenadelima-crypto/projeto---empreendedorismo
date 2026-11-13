@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área dos Representantes | Conecta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="pagina-representante">
+
+        <header class="topo-representante">
+
+            <a href="index.html" class="logo-representante">
+                CONECTA<span>+</span>
+            </a>
+
+            <a href="index.html" class="voltar-representante">
+                Voltar ao início
+            </a>
+
+        </header>
+
+        <!-- ACESSO DEMONSTRATIVO -->
+
+        <section class="acesso-representante" id="acesso-representante">
+
+            <div class="cartao-acesso-representante">
+
+                <div class="icone-acesso-representante">🔐</div>
+
+                <span>ÁREA RESTRITA</span>
+
+                <h1>Área dos representantes</h1>
+
+                <p>
+                    Espaço destinado à organização das atividades,
+                    acompanhamento dos alunos e registro de participação.
+                </p>
+
+                <div class="aviso-demonstracao">
+                    <strong>Versão demonstrativa</strong>
+                    <p>
+                        A autenticação ainda será conectada ao sistema
+                        de contas do Conecta+.
+                    </p>
+                </div>
+
+                <button id="entrar-demonstracao">
+                    Visualizar painel demonstrativo
+                </button>
+
+                <a href="index.html">Voltar para o site</a>
+
+            </div>
+
+        </section>
+
+        <!-- PAINEL DO REPRESENTANTE -->
+
+        <section class="painel-representante" id="painel-representante"
+            style="display: none;">
+
+            <div class="boas-vindas-representante">
+
+                <div>
+                    <span>PAINEL DE ORGANIZAÇÃO</span>
+                    <h1>Olá, representante!</h1>
+                    <p>
+                        Acompanhe a participação dos alunos
+                        e mantenha o Conecta+ organizado.
+                    </p>
+                </div>
+
+                <button id="sair-demonstracao">
+                    Sair do painel
+                </button>
+
+            </div>
+
+            <!-- RESUMO -->
+
+            <div class="resumo-representante">
+
+                <article class="cartao-resumo">
+                    <span>👥</span>
+                    <div>
+                        <p>Alunos cadastrados</p>
+                        <h2 id="total-alunos">3</h2>
+                    </div>
+                </article>
+
+                <article class="cartao-resumo">
+                    <span>🏅</span>
+                    <div>
+                        <p>Pontos registrados</p>
+                        <h2 id="total-pontos">0</h2>
+                    </div>
+                </article>
+
+                <article class="cartao-resumo">
+                    <span>📋</span>
+                    <div>
+                        <p>Registros realizados</p>
+                        <h2 id="total-registros">0</h2>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- LISTA DE ALUNOS -->
+
+            <section class="secao-alunos-representante">
+
+                <div class="titulo-painel-representante">
+                    <div>
+                        <span>ACOMPANHAMENTO</span>
+                        <h2>Alunos participantes</h2>
+                        <p>
+                            Registre a participação dos alunos nas atividades.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="filtros-representante">
+
+                    <input
+                        type="search"
+                        id="pesquisar-aluno"
+                        placeholder="Pesquisar aluno..."
+                    >
+
+                    <select id="filtro-participacao">
+                        <option value="todos">Todos os participantes</option>
+                        <option value="esportes">Esportes</option>
+                        <option value="estudos">Estudos</option>
+                        <option value="ambos">Esportes e estudos</option>
+                    </select>
+
+                </div>
+
+                <div class="lista-alunos-representante" id="lista-alunos">
+
+                    <!-- Os alunos serão inseridos pelo JavaScript -->
+
+                </div>
+
+            </section>
+
+            <div class="aviso-pontos-representante">
+                <strong>Como funciona a pontuação?</strong>
+                <p>
+                    Presença registrada: +10 pontos.
+                    Atividade concluída: +15 pontos.
+                    Cada registro só pode ser contabilizado uma vez
+                    por aluno nesta demonstração.
+                </p>
+            </div>
+
+        </section>
+
+        <footer class="rodape-representante">
+            <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
+        </footer>
+
+    </main>
+
+    <script>
+
+        // ALUNOS FICTÍCIOS PARA A DEMONSTRAÇÃO
+
+        const alunos = [
+            {
+                id: 1,
+                nome: "Ana Martins",
+                turma: "1º ano A",
+                participacao: "ambos",
+                pontos: 0,
+                presenca: false,
+                atividade: false
+            },
+            {
+                id: 2,
+                nome: "Lucas Oliveira",
+                turma: "2º ano B",
+                participacao: "esportes",
+                pontos: 0,
+                presenca: false,
+                atividade: false
+            },
+            {
+                id: 3,
+                nome: "Mariana Costa",
+                turma: "3º ano A",
+                participacao: "estudos",
+                pontos: 0,
+                presenca: false,
+                atividade: false
+            }
+        ];
+
+        const acesso = document.getElementById("acesso-representante");
+        const painel = document.getElementById("painel-representante");
+
+        const listaAlunos = document.getElementById("lista-alunos");
+
+        const pesquisarAluno = document.getElementById("pesquisar-aluno");
+        const filtroParticipacao = document.getElementById("filtro-participacao");
+
+        // ENTRAR NA DEMONSTRAÇÃO
+
+        document.getElementById("entrar-demonstracao").addEventListener("click", function () {
+
+            acesso.style.display = "none";
+            painel.style.display = "block";
+
+            atualizarPainel();
+
+        });
+
+        // SAIR DA DEMONSTRAÇÃO
+
+        document.getElementById("sair-demonstracao").addEventListener("click", function () {
+
+            painel.style.display = "none";
+            acesso.style.display = "flex";
+
+        });
+
+        // EXIBIR OS ALUNOS
+
+        function mostrarAlunos() {
+
+            const pesquisa = pesquisarAluno.value.toLowerCase();
+            const filtro = filtroParticipacao.value;
+
+            listaAlunos.innerHTML = "";
+
+            const alunosFiltrados = alunos.filter(function (aluno) {
+
+                const nomeCorresponde = aluno.nome.toLowerCase().includes(pesquisa);
+
+                const participacaoCorresponde =
+                    filtro === "todos" || aluno.participacao === filtro;
+
+                return nomeCorresponde && participacaoCorresponde;
+
+            });
+
+            if (alunosFiltrados.length === 0) {
+
+                listaAlunos.innerHTML = `
+                    <div class="nenhum-aluno">
+                        <h3>Nenhum aluno encontrado</h3>
+                        <p>Tente pesquisar por outro nome ou alterar o filtro.</p>
+                    </div>
+                `;
+
+                return;
+
+            }
+
+            alunosFiltrados.forEach(function (aluno) {
+
+                const cartao = document.createElement("article");
+
+                cartao.className = "cartao-aluno-representante";
+
+                let nomeParticipacao = "";
+
+                if (aluno.participacao === "ambos") {
+                    nomeParticipacao = "Esportes e estudos";
+                } else if (aluno.participacao === "esportes") {
+                    nomeParticipacao = "Esportes";
+                } else {
+                    nomeParticipacao = "Estudos";
+                }
+
+                cartao.innerHTML = `
+                    <div class="informacoes-aluno">
+
+                        <div class="avatar-aluno">
+                            ${aluno.nome.charAt(0)}
+                        </div>
+
+                        <div>
+                            <h3>${aluno.nome}</h3>
+                            <p>${aluno.turma} · ${nomeParticipacao}</p>
+                        </div>
+
+                        <div class="pontos-aluno">
+                            <strong>${aluno.pontos}</strong>
+                            <span>pontos</span>
+                        </div>
+
+                    </div>
+
+                    <div class="acoes-aluno">
+
+                        <button
+                            class="botao-presenca"
+                            data-id="${aluno.id}"
+                            ${aluno.presenca ? "disabled" : ""}
+                        >
+                            ${aluno.presenca ? "Presença registrada" : "Registrar presença (+10)"}
+                        </button>
+
+                        <button
+                            class="botao-atividade"
+                            data-id="${aluno.id}"
+                            ${aluno.atividade ? "disabled" : ""}
+                        >
+                            ${aluno.atividade ? "Atividade registrada" : "Registrar atividade (+15)"}
+                        </button>
+
+                    </div>
+                `;
+
+                listaAlunos.appendChild(cartao);
+
+            });
+
+            // REGISTRAR PRESENÇA
+
+            document.querySelectorAll(".botao-presenca").forEach(function (botao) {
+
+                botao.addEventListener("click", function () {
+
+                    const id = Number(botao.dataset.id);
+
+                    const aluno = alunos.find(function (item) {
+                        return item.id === id;
+                    });
+
+                    if (!aluno || aluno.presenca) return;
+
+                    aluno.presenca = true;
+                    aluno.pontos += 10;
+
+                    atualizarPainel();
+
+                });
+
+            });
+
+            // REGISTRAR ATIVIDADE CONCLUÍDA
+
+            document.querySelectorAll(".botao-atividade").forEach(function (botao) {
+
+                botao.addEventListener("click", function () {
+
+                    const id = Number(botao.dataset.id);
+
+                    const aluno = alunos.find(function (item) {
+                        return item.id === id;
+                    });
+
+                    if (!aluno || aluno.atividade) return;
+
+                    aluno.atividade = true;
+                    aluno.pontos += 15;
+
+                    atualizarPainel();
+
+                });
+
+            });
+
+        }
+
+        // ATUALIZAR OS NÚMEROS DO PAINEL
+
+        function atualizarPainel() {
+
+            const pontosTotais = alunos.reduce(function (total, aluno) {
+                return total + aluno.pontos;
+            }, 0);
+
+            const registros = alunos.reduce(function (total, aluno) {
+
+                return total
+                    + (aluno.presenca ? 1 : 0)
+                    + (aluno.atividade ? 1 : 0);
+
+            }, 0);
+
+            document.getElementById("total-alunos").textContent = alunos.length;
+
+            document.getElementById("total-pontos").textContent = pontosTotais;
+
+            document.getElementById("total-registros").textContent = registros;
+
+            mostrarAlunos();
+
+        }
+
+        // PESQUISA E FILTROS
+
+        pesquisarAluno.addEventListener("input", mostrarAlunos);
+
+        filtroParticipacao.addEventListener("change", mostrarAlunos);
+
+    </script>
+
+</body>
+</html>
