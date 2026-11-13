@@ -721,3 +721,152 @@ button:hover {
         font-size: 2.2rem;
     }
 }
+
+/* ===== PÁGINA DE INSCRIÇÃO ===== */
+
+.pagina-inscricao {
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 10% 15%, #FFFFFF 0, transparent 25%),
+        radial-gradient(circle at 90% 85%, #F5B7CB 0, transparent 28%),
+        linear-gradient(135deg, #FCE8EF, #F9D5E1);
+}
+
+.logo-inscricao {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+    margin-bottom: 28px;
+}
+
+.logo-inscricao span {
+    color: #E96791;
+}
+
+.caixa-inscricao {
+    width: 100%;
+    max-width: 650px;
+    padding: 42px;
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 28px;
+    box-shadow: 0 18px 50px rgba(157, 66, 104, 0.11);
+}
+
+.cabecalho-inscricao {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.cabecalho-inscricao > span {
+    color: #E96791;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.cabecalho-inscricao h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: 2rem;
+    margin: 15px 0 10px;
+}
+
+.cabecalho-inscricao p {
+    color: #625966;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.form-inscricao {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.linha-inscricao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.campo-inscricao {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.campo-inscricao label {
+    color: #514956;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.campo-inscricao input,
+.campo-inscricao select {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #E8CCD8;
+    border-radius: 13px;
+    background: #FFF8FA;
+    color: #292333;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+}
+
+.campo-inscricao input:focus,
+.campo-inscricao select:focus {
+    outline: none;
+    border-color: #E96791;
+    box-shadow: 0 0 0 3px rgba(233, 103, 145, 0.12);
+}
+
+.campo-inscricao input[readonly] {
+    background: #FCE8EF;
+    color: #9D4268;
+    font-weight: 600;
+}
+
+.form-inscricao button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 13px;
+    margin-top: 8px;
+}
+
+.mensagem-inscricao {
+    color: #9D4268;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.pagina-inscricao .voltar {
+    margin-top: 28px;
+}
+
+@media (max-width: 550px) {
+    .caixa-inscricao {
+        padding: 30px 22px;
+    }
+
+    .linha-inscricao {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho-inscricao h2 {
+        font-size: 1.65rem;
+    }
+
+    .logo-inscricao {
+        font-size: 2.2rem;
+    }
+}
