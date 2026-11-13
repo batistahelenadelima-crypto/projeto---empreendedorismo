@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             alunos = [];
 
-            atualizarResumo();
+            await atualizarResumo();
 
             listaAlunos.innerHTML = `
                 <div class="nenhum-aluno">
@@ -384,13 +384,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         }
 
-        atualizarResumo();
+        await atualizarResumo();
         mostrarAlunos();
 
     }
 
     // ATUALIZAR RESUMO
-    function atualizarResumo() {
+    async function atualizarResumo() {
 
         document.getElementById("total-alunos").textContent =
             alunos.length;
@@ -402,8 +402,45 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("total-pontos").textContent =
             totalPontos;
 
-        // Será conectado à contagem de registros em uma próxima etapa.
-        document.getElementById("total-registros").textContent = "—";
+        const idsAlunos = alunos.map(function (aluno) {
+            return aluno.id;
+        });
+
+        let totalPresencas = 0;
+        let totalConclusoes = 0;
+
+        if (idsAlunos.length > 0) {
+
+            // CONTAR PRESENÇAS
+            const { count: presencas, error: erroPresencas } = await db
+                .from("attendance")
+                .select("student_id", {
+                    count: "exact",
+                    head: true
+                })
+                .in("student_id", idsAlunos);
+
+            if (erroPresencas) throw erroPresencas;
+
+            totalPresencas = presencas || 0;
+
+            // CONTAR ATIVIDADES CONCLUÍDAS
+            const { count: conclusoes, error: erroConclusoes } = await db
+                .from("activity_completions")
+                .select("student_id", {
+                    count: "exact",
+                    head: true
+                })
+                .in("student_id", idsAlunos);
+
+            if (erroConclusoes) throw erroConclusoes;
+
+            totalConclusoes = conclusoes || 0;
+
+        }
+
+        document.getElementById("total-registros").textContent =
+            totalPresencas + totalConclusoes;
 
     }
 
