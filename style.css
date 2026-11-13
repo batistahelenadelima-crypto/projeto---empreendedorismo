@@ -459,3 +459,104 @@ button:hover {
 .voltar:hover {
     text-decoration: underline;
 }
+
+
+/* ===== PÁGINA DE LOGIN ===== */
+
+.pagina-login {
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 15% 20%, #ffffff 0, transparent 25%),
+        linear-gradient(135deg, #FCE8EF, #F9D5E1);
+}
+
+.logo-login {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #9D4268;
+    text-decoration: none;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+.logo-login span {
+    color: #E96791;
+}
+
+.caixa-login {
+    width: 100%;
+    max-width: 480px;
+    padding: 45px 40px;
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(157, 66, 104, 0.10);
+    text-align: center;
+}
+
+.caixa-login .titulo-secao {
+    margin-bottom: 35px;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 12px;
+}
+
+.form-login label {
+    color: #514956;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.form-login input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #E8CCD8;
+    border-radius: 12px;
+    background: #FFF8FA;
+    color: #292333;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+.form-login input:focus {
+    outline: 2px solid #E96791;
+    border-color: transparent;
+}
+
+.form-login button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.texto-cadastro {
+    margin-top: 28px;
+    color: #625966;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.texto-cadastro a {
+    color: #9D4268;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.texto-cadastro a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .caixa-login {
+        padding: 35px 22px;
+    }
+}
