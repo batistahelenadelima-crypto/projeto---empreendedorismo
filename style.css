@@ -2649,3 +2649,120 @@ button:hover {
     }
 
 }
+
+/* ÁREA DE APROVAÇÃO DE INSCRIÇÕES */
+
+.secao-inscricoes-representante {
+    margin-bottom: 40px;
+}
+
+.lista-inscricoes-representante {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.lista-inscricoes-representante .cartao-aluno-representante {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 4px 14px rgba(157, 66, 104, 0.06);
+}
+
+.lista-inscricoes-representante .informacoes-aluno {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.lista-inscricoes-representante .informacoes-aluno h3 {
+    color: #292333;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.lista-inscricoes-representante .informacoes-aluno p {
+    color: #6F6572;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 3px 0;
+}
+
+.botoes-aprovacao {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.botoes-aprovacao button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 22px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botao-aprovar {
+    background: #E96791;
+    color: #FFFCFD;
+}
+
+.botao-aprovar:hover {
+    background: #9D4268;
+}
+
+.botao-rejeitar {
+    background: #FCE8EF;
+    color: #9D4268;
+}
+
+.botao-rejeitar:hover {
+    background: #F5D4E0;
+}
+
+.botoes-aprovacao button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.lista-inscricoes-representante .nenhum-aluno {
+    background: #FFFCFD;
+    border: 1px dashed #E9B9CA;
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+}
+
+.lista-inscricoes-representante .nenhum-aluno h3 {
+    color: #9D4268;
+    margin-bottom: 8px;
+}
+
+.lista-inscricoes-representante .nenhum-aluno p {
+    color: #6F6572;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+    .lista-inscricoes-representante .cartao-aluno-representante {
+        padding: 17px;
+    }
+
+    .botoes-aprovacao {
+        flex-direction: column;
+    }
+
+    .botoes-aprovacao button {
+        width: 100%;
+    }
+
+}
