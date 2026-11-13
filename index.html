@@ -88,6 +88,119 @@
 
         </section>
 
+<section class="acesso" id="acesso">
+
+    <div class="titulo-secao">
+        <span>FAÇA PARTE</span>
+        <h2>Seu próximo passo começa aqui.</h2>
+        <p>
+            Entre na sua conta ou inscreva-se para fazer
+            parte do Conecta+.
+        </p>
+    </div>
+
+    <div class="opcoes-acesso">
+
+        <div class="cartao-acesso">
+            <div class="icone-acesso">👋</div>
+            <h3>Já faço parte!</h3>
+            <p>
+                Acesse sua conta e acompanhe suas atividades,
+                horários e conquistas.
+            </p>
+            <a href="#login" class="botao-acesso">
+                Entrar na plataforma →
+            </a>
+        </div>
+
+        <div class="cartao-acesso destaque-acesso">
+            <div class="icone-acesso">✨</div>
+            <h3>Quero participar!</h3>
+            <p>
+                Faça sua inscrição e venha conectar
+                esporte, conhecimento e novas oportunidades.
+            </p>
+            <a href="#inscricao" class="botao-acesso">
+                Fazer inscrição →
+            </a>
+        </div>
+
+    </div>
+
+    <div class="formularios-acesso">
+
+        <div class="formulario" id="login">
+            <h3>Bem-vindo de volta!</h3>
+            <p>Acesse sua conta do Conecta+.</p>
+
+            <form onsubmit="event.preventDefault(); document.getElementById('mensagem-login').textContent='O acesso será habilitado quando conectarmos o sistema de contas.';">
+
+                <label for="email-login">E-mail</label>
+                <input type="email" id="email-login"
+                    placeholder="seuemail@exemplo.com" required>
+
+                <label for="senha-login">Senha</label>
+                <input type="password" id="senha-login"
+                    placeholder="Digite sua senha" required>
+
+                <button type="submit">Entrar</button>
+
+                <p id="mensagem-login" class="mensagem-formulario"></p>
+            </form>
+        </div>
+
+        <div class="formulario" id="inscricao">
+            <h3>Faça sua inscrição!</h3>
+            <p>Preencha seus dados para participar do projeto.</p>
+
+            <form onsubmit="event.preventDefault(); document.getElementById('mensagem-inscricao').textContent='Formulário de demonstração. O envio será habilitado quando conectarmos o banco de dados.';">
+
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome"
+                    placeholder="Digite seu nome" required>
+
+                <label for="idade">Idade</label>
+                <input type="number" id="idade"
+                    placeholder="Sua idade" min="1" required>
+
+                <label for="ano">Ano escolar</label>
+                <select id="ano" required>
+                    <option value="">Selecione seu ano</option>
+                    <option>1º ano</option>
+                    <option>2º ano</option>
+                    <option>3º ano</option>
+                </select>
+
+                <label for="turno">Turno</label>
+                <input type="text" id="turno"
+                    value="Tarde" readonly>
+
+                <label for="participacao">Como deseja participar?</label>
+                <select id="participacao" required>
+                    <option value="">Selecione uma opção</option>
+                    <option>Somente esportes</option>
+                    <option>Somente estudos</option>
+                    <option>Esportes e estudos</option>
+                </select>
+
+                <label for="esporte">Modalidade esportiva de interesse</label>
+                <input type="text" id="esporte"
+                    placeholder="Ex.: Vôlei, futsal, basquete...">
+
+                <label for="materias">Matérias de interesse</label>
+                <input type="text" id="materias"
+                    placeholder="Ex.: Matemática, História...">
+
+                <button type="submit">Enviar inscrição</button>
+
+                <p id="mensagem-inscricao" class="mensagem-formulario"></p>
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
     </main>
 
 </body>
