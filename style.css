@@ -872,3 +872,295 @@ button:hover {
         font-size: 2.2rem;
     }
 }
+
+/* ===== PERFIL DO ESTUDANTE ===== */
+
+.pagina-perfil {
+    min-height: 100vh;
+    background: #FFF8FA;
+    padding: 0 7% 50px;
+}
+
+.topo-perfil {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+}
+
+.logo-perfil {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+}
+
+.logo-perfil span {
+    color: #E96791;
+}
+
+.sair-perfil {
+    color: #9D4268;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.sair-perfil:hover {
+    text-decoration: underline;
+}
+
+.boas-vindas-perfil {
+    padding: 55px 50px;
+    border-radius: 25px;
+    background: linear-gradient(120deg, #FCE8EF, #F9D5E1);
+}
+
+.boas-vindas-perfil > span,
+.cartao-identificacao > div > span,
+.titulo-perfil > span {
+    color: #9D4268;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.boas-vindas-perfil h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 12px 0;
+}
+
+.boas-vindas-perfil p {
+    color: #625966;
+    line-height: 1.7;
+    max-width: 550px;
+}
+
+.resumo-perfil {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 25px;
+}
+
+.cartao-identificacao,
+.indicador,
+.cartao-area,
+.mensagem-conquistas {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+}
+
+.cartao-identificacao {
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.avatar-perfil {
+    min-width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.cartao-identificacao h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    margin: 7px 0;
+}
+
+.cartao-identificacao p {
+    color: #625966;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.indicadores-perfil {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.indicador {
+    padding: 22px 15px;
+    text-align: center;
+}
+
+.indicador span {
+    color: #9D4268;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.indicador strong {
+    display: block;
+    color: #E96791;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin: 8px 0;
+}
+
+.indicador p {
+    color: #625966;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.participacao-perfil,
+.conquistas-perfil {
+    margin-top: 65px;
+}
+
+.titulo-perfil {
+    margin-bottom: 25px;
+}
+
+.titulo-perfil h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.titulo-perfil p {
+    color: #625966;
+    line-height: 1.6;
+}
+
+.areas-perfil {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.cartao-area {
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.cartao-area:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(157, 66, 104, 0.10);
+}
+
+.icone-area {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: #FCE8EF;
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+}
+
+.cartao-area h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.cartao-area p {
+    color: #625966;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.status-area {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.mensagem-conquistas {
+    padding: 40px 25px;
+    text-align: center;
+}
+
+.mensagem-conquistas > span {
+    font-size: 2.3rem;
+}
+
+.mensagem-conquistas h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    margin: 12px 0;
+}
+
+.mensagem-conquistas p {
+    color: #625966;
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.rodape-perfil {
+    margin-top: 65px;
+    padding-top: 25px;
+    border-top: 1px solid #F0DCE5;
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 850px) {
+    .resumo-perfil {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .pagina-perfil {
+        padding: 0 18px 35px;
+    }
+
+    .boas-vindas-perfil {
+        padding: 38px 25px;
+    }
+
+    .indicadores-perfil,
+    .areas-perfil {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-identificacao {
+        padding: 22px;
+    }
+
+    .participacao-perfil,
+    .conquistas-perfil {
+        margin-top: 45px;
+    }
+
+    .topo-perfil {
+        min-height: 75px;
+    }
+
+    .logo-perfil {
+        font-size: 1.7rem;
+    }
+}
