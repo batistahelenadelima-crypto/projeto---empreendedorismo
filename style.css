@@ -1406,3 +1406,246 @@ button:hover {
     }
 
 }
+
+/* ===== ÁREA DE ESTUDOS ===== */
+
+.pagina-estudos {
+    min-height: 100vh;
+    background: #FFF8FA;
+    padding: 0 7% 50px;
+}
+
+.topo-estudos {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-estudos {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+}
+
+.logo-estudos span {
+    color: #E96791;
+}
+
+.voltar-estudos {
+    color: #9D4268;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.boas-vindas-estudos {
+    padding: 55px 50px;
+    border-radius: 25px;
+    background: linear-gradient(120deg, #FCE8EF, #F9D5E1);
+}
+
+.boas-vindas-estudos > span,
+.titulo-estudos > span {
+    color: #9D4268;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.boas-vindas-estudos h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 12px 0;
+}
+
+.boas-vindas-estudos p,
+.titulo-estudos p {
+    color: #625966;
+    line-height: 1.7;
+}
+
+.boas-vindas-estudos p {
+    max-width: 550px;
+}
+
+.conteudo-estudos,
+.atividades-estudos,
+.progresso-estudos {
+    margin-top: 60px;
+}
+
+.titulo-estudos {
+    margin-bottom: 25px;
+}
+
+.titulo-estudos h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.lista-grupos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.cartao-estudo {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+    transition: 0.3s;
+}
+
+.cartao-estudo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(157, 66, 104, 0.10);
+}
+
+.icone-estudo {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCE8EF;
+    border-radius: 18px;
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+}
+
+.cartao-estudo h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.cartao-estudo p {
+    color: #625966;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+.categoria-estudo {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.painel-atividades {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    padding: 40px 25px;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+}
+
+.atividade-vazia {
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.atividade-vazia > span {
+    font-size: 2.5rem;
+}
+
+.atividade-vazia h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    margin: 15px 0 10px;
+}
+
+.atividade-vazia p {
+    color: #625966;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.indicadores-estudos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.indicador-estudo {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    padding: 25px 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+}
+
+.indicador-estudo span {
+    color: #9D4268;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.indicador-estudo strong {
+    display: block;
+    color: #E96791;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin: 8px 0;
+}
+
+.indicador-estudo p {
+    color: #625966;
+    font-size: 0.8rem;
+}
+
+.rodape-estudos {
+    margin-top: 65px;
+    padding-top: 25px;
+    border-top: 1px solid #F0DCE5;
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+
+    .pagina-estudos {
+        padding: 0 18px 35px;
+    }
+
+    .boas-vindas-estudos {
+        padding: 38px 25px;
+    }
+
+    .lista-grupos,
+    .indicadores-estudos {
+        grid-template-columns: 1fr;
+    }
+
+    .topo-estudos {
+        min-height: 75px;
+    }
+
+    .logo-estudos {
+        font-size: 1.7rem;
+    }
+
+    .conteudo-estudos,
+    .atividades-estudos,
+    .progresso-estudos {
+        margin-top: 45px;
+    }
+
+}
