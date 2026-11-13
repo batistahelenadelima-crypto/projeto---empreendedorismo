@@ -79,3 +79,85 @@ button:hover {
     background: #9D4268;
     transform: translateY(-3px);
 }
+
+
+/* NOVA SEÇÃO: COMO FUNCIONA */
+
+.como-funciona {
+    padding: 90px 30px;
+    background: #FCE8EF;
+    text-align: center;
+}
+
+.titulo-secao {
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.titulo-secao > span {
+    color: #9D4268;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.titulo-secao h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: #9D4268;
+    margin: 18px 0;
+}
+
+.titulo-secao p {
+    line-height: 1.8;
+    color: #514956;
+}
+
+.atividades {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.cartao-atividade {
+    background: #FFFCFD;
+    padding: 35px 25px;
+    border-radius: 22px;
+    transition: 0.3s;
+}
+
+.cartao-atividade:hover {
+    transform: translateY(-7px);
+}
+
+.icone {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cartao-atividade h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    margin-bottom: 12px;
+}
+
+.cartao-atividade p {
+    color: #514956;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.frase-final {
+    margin-top: 55px;
+    color: #9D4268;
+    font-weight: 600;
+}
+
+@media (max-width: 750px) {
+    .atividades {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+}
