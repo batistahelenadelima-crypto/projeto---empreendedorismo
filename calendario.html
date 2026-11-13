@@ -279,7 +279,6 @@
 
                 if (resultadoAtividades.error) {
                     console.error(resultadoAtividades.error);
-
                     atividadesProjeto = [];
 
                     listaEventos.textContent =
@@ -453,7 +452,6 @@
                         );
 
                         botaoExcluir.type = "button";
-                        botaoExcluir.dataset.id = evento.id;
 
                         botaoExcluir.addEventListener("click", () => {
                             excluirCompromisso(evento.id, botaoExcluir);
