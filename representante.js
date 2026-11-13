@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             aviso.innerHTML = `
                 <strong>Acesso não autorizado</strong>
                 <p>Esta área é exclusiva para representantes.</p>
+                <a href="login.html">Voltar ao login</a>
             `;
             return;
         }
@@ -81,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     }
 
-    // FUNÇÃO PARA CRIAR ELEMENTOS DE TEXTO
+    // CRIAR ELEMENTOS DE TEXTO
     function criarTexto(tag, classe, conteudo) {
 
         const elemento = document.createElement(tag);
@@ -90,9 +91,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             elemento.className = classe;
         }
 
-        elemento.textContent = conteudo || "";
+        elemento.textContent =
+            conteudo === null || conteudo === undefined ? "" : String(conteudo);
 
         return elemento;
+
     }
 
     // BUSCAR PERFIS PELOS IDS
@@ -117,12 +120,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (error) throw error;
 
         return data || [];
+
     }
 
     // CARREGAR INSCRIÇÕES PENDENTES
     async function carregarInscricoes() {
 
-        listaInscricoes.innerHTML = "<p>Carregando inscrições...</p>";
+        listaInscricoes.innerHTML =
+            "<p>Carregando inscrições...</p>";
 
         const { data: inscricoes, error } = await db
             .from("enrollments")
@@ -142,6 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
 
             return;
+
         }
 
         const ids = inscricoes.map(function (inscricao) {
@@ -189,12 +195,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             );
 
             if (aluno.sport_preference) {
+
                 dados.appendChild(
                     criarTexto("p", "", `Esporte: ${aluno.sport_preference}`)
                 );
+
             }
 
             if (aluno.subject_preferences) {
+
                 const materias = Array.isArray(aluno.subject_preferences)
                     ? aluno.subject_preferences.join(", ")
                     : String(aluno.subject_preferences);
@@ -202,11 +211,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 dados.appendChild(
                     criarTexto("p", "", `Matérias: ${materias}`)
                 );
+
             }
 
             informacoes.appendChild(dados);
             cartao.appendChild(informacoes);
 
+            // BOTÕES DE APROVAÇÃO
             const botoes = document.createElement("div");
             botoes.className = "botoes-aprovacao";
 
@@ -221,11 +232,21 @@ document.addEventListener("DOMContentLoaded", async function () {
             rejeitar.className = "botao-rejeitar";
 
             aprovar.addEventListener("click", function () {
-                avaliarInscricao(inscricao.id, "approved", aprovar, rejeitar);
+                avaliarInscricao(
+                    inscricao.id,
+                    "approved",
+                    aprovar,
+                    rejeitar
+                );
             });
 
             rejeitar.addEventListener("click", function () {
-                avaliarInscricao(inscricao.id, "rejected", aprovar, rejeitar);
+                avaliarInscricao(
+                    inscricao.id,
+                    "rejected",
+                    aprovar,
+                    rejeitar
+                );
             });
 
             botoes.appendChild(aprovar);
@@ -239,7 +260,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // APROVAR OU REJEITAR INSCRIÇÃO
-    async function avaliarInscricao(id, status, botaoAprovar, botaoRejeitar) {
+    async function avaliarInscricao(
+        id,
+        status,
+        botaoAprovar,
+        botaoRejeitar
+    ) {
 
         const confirmacao = status === "approved"
             ? "Deseja aprovar esta inscrição?"
@@ -259,12 +285,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             console.error("Erro ao avaliar inscrição:", error);
 
-            alert("Não foi possível atualizar a inscrição. Tente novamente.");
+            alert(
+                "Não foi possível atualizar a inscrição. Tente novamente."
+            );
 
             botaoAprovar.disabled = false;
             botaoRejeitar.disabled = false;
 
             return;
+
         }
 
         alert(
@@ -278,7 +307,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     }
 
-    // CARREGAR ALUNOS APROVADOS
+    // CARREGAR ALUNOS APROVADOS E PONTUAÇÃO
     async function carregarAlunos() {
 
         listaAlunos.innerHTML = "<p>Carregando alunos...</p>";
@@ -304,6 +333,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             `;
 
             return;
+
         }
 
         const ids = inscricoes.map(function (inscricao) {
@@ -312,46 +342,47 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const perfis = await buscarPerfis(ids);
 
-      alunos = perfis.map(function (aluno) {
+        // ORGANIZAR DADOS DOS ALUNOS
+        alunos = perfis.map(function (aluno) {
 
-    return {
-        id: aluno.id,
-        nome: aluno.full_name,
-        ano: aluno.school_year,
-        turma: aluno.class_group,
-        participacao: aluno.participation,
-        pontos: 0
-    };
+            return {
+                id: aluno.id,
+                nome: aluno.full_name,
+                ano: aluno.school_year,
+                turma: aluno.class_group,
+                participacao: aluno.participation,
+                pontos: 0
+            };
 
-});
+        });
 
-// BUSCAR PONTUAÇÃO DOS ALUNOS
-const idsAlunos = alunos.map(function (aluno) {
-    return aluno.id;
-});
+        // BUSCAR PONTUAÇÃO DOS ALUNOS
+        const idsAlunos = alunos.map(function (aluno) {
+            return aluno.id;
+        });
 
-if (idsAlunos.length > 0) {
+        if (idsAlunos.length > 0) {
 
-    const { data: pontuacoes, error: erroPontos } = await db
-        .from("points_ledger")
-        .select("student_id, points")
-        .in("student_id", idsAlunos);
+            const { data: pontuacoes, error: erroPontos } = await db
+                .from("points_ledger")
+                .select("student_id, points")
+                .in("student_id", idsAlunos);
 
-    if (erroPontos) throw erroPontos;
+            if (erroPontos) throw erroPontos;
 
-    alunos.forEach(function (aluno) {
+            alunos.forEach(function (aluno) {
 
-        aluno.pontos = (pontuacoes || [])
-            .filter(function (registro) {
-                return registro.student_id === aluno.id;
-            })
-            .reduce(function (total, registro) {
-                return total + Number(registro.points || 0);
-            }, 0);
+                aluno.pontos = (pontuacoes || [])
+                    .filter(function (registro) {
+                        return registro.student_id === aluno.id;
+                    })
+                    .reduce(function (total, registro) {
+                        return total + Number(registro.points || 0);
+                    }, 0);
 
-    });
+            });
 
-}
+        }
 
         atualizarResumo();
         mostrarAlunos();
@@ -364,28 +395,43 @@ if (idsAlunos.length > 0) {
         document.getElementById("total-alunos").textContent =
             alunos.length;
 
-        document.getElementById("total-pontos").textContent = "—";
+        const totalPontos = alunos.reduce(function (total, aluno) {
+            return total + aluno.pontos;
+        }, 0);
 
+        document.getElementById("total-pontos").textContent =
+            totalPontos;
+
+        // Será conectado à contagem de registros em uma próxima etapa.
         document.getElementById("total-registros").textContent = "—";
 
     }
 
     // NORMALIZAR PARTICIPAÇÃO
-  function atualizarResumo() {
+    function normalizarParticipacao(valor) {
 
-    document.getElementById("total-alunos").textContent =
-        alunos.length;
+        const texto = String(valor || "").toLowerCase();
 
-    const totalPontos = alunos.reduce(function (total, aluno) {
-        return total + aluno.pontos;
-    }, 0);
+        if (
+            texto.includes("ambos") ||
+            texto.includes("both") ||
+            texto.includes("ambas")
+        ) {
+            return "ambos";
+        }
 
-    document.getElementById("total-pontos").textContent =
-        totalPontos;
+        if (texto.includes("esporte") || texto.includes("sport")) {
+            return "esportes";
+        }
 
-    document.getElementById("total-registros").textContent = "—";
+        if (texto.includes("estudo") || texto.includes("study")) {
+            return "estudos";
+        }
 
-}
+        return texto;
+
+    }
+
     // MOSTRAR ALUNOS APROVADOS
     function mostrarAlunos() {
 
@@ -419,6 +465,7 @@ if (idsAlunos.length > 0) {
             `;
 
             return;
+
         }
 
         filtrados.forEach(function (aluno) {
@@ -448,11 +495,17 @@ if (idsAlunos.length > 0) {
                 )
             );
 
+            // MOSTRAR PONTOS DO ALUNO
             const pontos = document.createElement("div");
             pontos.className = "pontos-aluno";
 
-            pontos.appendChild(criarTexto("strong", "", "—"));
-            pontos.appendChild(criarTexto("span", "", "pontos"));
+            pontos.appendChild(
+                criarTexto("strong", "", aluno.pontos)
+            );
+
+            pontos.appendChild(
+                criarTexto("span", "", "pontos")
+            );
 
             informacoes.appendChild(avatar);
             informacoes.appendChild(dados);
@@ -475,9 +528,12 @@ if (idsAlunos.length > 0) {
         const { error } = await db.auth.signOut();
 
         if (error) {
+
             alert("Não foi possível sair da conta.");
             console.error(error);
+
             return;
+
         }
 
         window.location.href = "login.html";
