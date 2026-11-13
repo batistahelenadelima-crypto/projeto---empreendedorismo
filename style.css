@@ -3041,3 +3041,371 @@ button:hover {
         gap: 10px;
     }
 }
+
+/* =====================================
+   CALENDÁRIO CONECTA+ — NOVOS ELEMENTOS
+===================================== */
+
+.boas-vindas-calendario {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.boas-vindas-calendario > span,
+.titulo-calendario > span {
+    color: #E96791;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.boas-vindas-calendario h1 {
+    color: #292333;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 12px 0;
+}
+
+.boas-vindas-calendario p,
+.titulo-calendario p {
+    color: #766D76;
+    line-height: 1.7;
+}
+
+.area-calendario,
+.secao-adicionar-evento,
+.secao-eventos {
+    width: min(900px, 92%);
+    margin: 30px auto;
+}
+
+.area-calendario {
+    background: #FFFCFD;
+    border: 1px solid #F5DDE5;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(157, 66, 104, 0.07);
+}
+
+.cabecalho-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.cabecalho-calendario h2 {
+    color: #292333;
+    font-size: 1.35rem;
+}
+
+.cabecalho-calendario button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.grade-calendario {
+    width: 100%;
+}
+
+.dias-semana,
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.dias-semana {
+    margin-bottom: 10px;
+}
+
+.dias-semana span {
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 0;
+}
+
+.dia-calendario {
+    min-height: 75px;
+    padding: 9px 5px;
+    border-radius: 12px;
+    background: #FFF7F9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dia-calendario.vazio {
+    background: transparent;
+}
+
+.numero-dia {
+    color: #292333;
+    font-size: 0.9rem;
+}
+
+.dia-hoje {
+    background: #FCE8EF;
+    outline: 2px solid #E96791;
+}
+
+.dia-hoje .numero-dia {
+    color: #9D4268;
+    font-weight: 800;
+}
+
+.marcadores-dia {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.marcadores-dia span,
+.legenda-calendario i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.marcador-esporte,
+.legenda-esporte {
+    background: #E96791;
+}
+
+.marcador-estudo,
+.legenda-estudo {
+    background: #9D4268;
+}
+
+.marcador-pessoal,
+.legenda-pessoal {
+    background: #7C83C7;
+}
+
+.legenda-calendario {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.legenda-calendario span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #766D76;
+    font-size: 0.82rem;
+}
+
+.titulo-calendario {
+    margin-bottom: 22px;
+}
+
+.titulo-calendario h2 {
+    color: #292333;
+    font-size: 1.65rem;
+    margin: 8px 0;
+}
+
+.form-compromisso {
+    background: #FFFCFD;
+    border: 1px solid #F5DDE5;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo-compromisso {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-compromisso label {
+    color: #292333;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.campo-compromisso input,
+.campo-compromisso textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #EBD6DE;
+    border-radius: 11px;
+    background: #FFFCFD;
+    color: #292333;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.campo-compromisso input:focus,
+.campo-compromisso textarea:focus {
+    outline: 2px solid #F58AA5;
+    border-color: #E96791;
+}
+
+.campo-compromisso textarea {
+    resize: vertical;
+}
+
+.campos-data-compromisso {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.botao-compromisso {
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    background: #E96791;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-compromisso:hover {
+    background: #9D4268;
+}
+
+.botao-compromisso:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mensagem-compromisso {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.mensagem-sucesso {
+    color: #287A50;
+}
+
+.mensagem-erro {
+    color: #B83250;
+}
+
+.lista-eventos {
+    display: grid;
+    gap: 15px;
+}
+
+.cartao-evento {
+    background: #FFFCFD;
+    border: 1px solid #F5DDE5;
+    border-left: 5px solid #E96791;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.topo-cartao-evento {
+    margin-bottom: 10px;
+}
+
+.tipo-evento {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.tipo-pessoal {
+    background: #EEEEFF;
+    color: #6269A8;
+}
+
+.tipo-esporte {
+    background: #FCE8EF;
+    color: #B84970;
+}
+
+.tipo-estudo {
+    background: #F4E8F0;
+    color: #9D4268;
+}
+
+.cartao-evento h3 {
+    color: #292333;
+    margin: 8px 0;
+    font-size: 1.1rem;
+}
+
+.data-evento,
+.descricao-evento {
+    color: #766D76;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.botao-excluir-evento {
+    margin-top: 12px;
+    padding: 9px 13px;
+    border: 1px solid #E8B7C8;
+    border-radius: 9px;
+    background: transparent;
+    color: #9D4268;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botao-excluir-evento:hover {
+    background: #FCE8EF;
+}
+
+.botao-excluir-evento:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.aviso-calendario {
+    color: #766D76;
+    background: #FFFCFD;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .area-calendario {
+        padding: 15px 10px;
+    }
+
+    .dia-calendario {
+        min-height: 58px;
+        padding: 7px 2px;
+    }
+
+    .dias-semana span {
+        font-size: 0.7rem;
+    }
+
+    .campos-data-compromisso {
+        grid-template-columns: 1fr;
+    }
+
+    .form-compromisso {
+        padding: 18px;
+    }
+
+    .legenda-calendario {
+        gap: 12px;
+    }
+}
