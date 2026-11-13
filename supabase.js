@@ -3,29 +3,26 @@
 // CONECTA+ | AUTENTICAÇÃO
 // =====================================
 
-const conectaSupabase = window.supabaseClient;
 
-window.ConectaAuth = {
+const { data, error } = await conectaSupabase.auth.signUp({
+    email: dados.email,
+    password: dados.senha,
 
-    // CADASTRAR NOVO ALUNO
-    async cadastrar(dados) {
+    options: {
+        emailRedirectTo: "https://batistahelenadelima-crypto.github.io/projeto---empreendedorismo/login.html",
 
-        const { data, error } = await conectaSupabase.auth.signUp({
-            email: dados.email,
-            password: dados.senha,
+        data: {
+            full_name: dados.nome,
+            age: Number(dados.idade),
+            school_year: Number(dados.ano),
+            class_group: dados.turma,
+            participation: dados.participacao,
+            sport_preference: dados.esporte,
+            subject_preferences: dados.materias
+        }
+    }
+});
 
-            options: {
-                data: {
-                    full_name: dados.nome,
-                    age: Number(dados.idade),
-                    school_year: Number(dados.ano),
-                    class_group: dados.turma,
-                    participation: dados.participacao,
-                    sport_preference: dados.esporte,
-                    subject_preferences: dados.materias
-                }
-            }
-        });
 
         if (error) throw error;
 
