@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição | Conecta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="pagina-inscricao">
+
+        <a href="index.html" class="logo-inscricao">
+            CONECTA<span>+</span>
+        </a>
+
+        <div class="caixa-inscricao">
+
+            <div class="cabecalho-inscricao">
+                <span>FAÇA PARTE DO CONECTA+</span>
+
+                <h2>Vamos começar?</h2>
+
+                <p>
+                    Preencha seus dados e conte um pouco
+                    sobre como deseja participar.
+                </p>
+            </div>
+
+            <form class="form-inscricao"
+                onsubmit="event.preventDefault(); document.getElementById('mensagem-inscricao').textContent = 'Inscrição de demonstração preenchida! O cadastro oficial estará disponível quando a plataforma estiver conectada ao sistema de contas.';">
+
+                <div class="campo-inscricao">
+                    <label for="nome">Nome completo</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome completo"
+                        required
+                    >
+                </div>
+
+                <div class="linha-inscricao">
+
+                    <div class="campo-inscricao">
+                        <label for="idade">Idade</label>
+                        <input
+                            type="number"
+                            id="idade"
+                            min="13"
+                            max="19"
+                            placeholder="Sua idade"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo-inscricao">
+                        <label for="ano">Ano escolar</label>
+                        <select id="ano" required>
+                            <option value="">Selecione</option>
+                            <option>1º ano</option>
+                            <option>2º ano</option>
+                            <option>3º ano</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="turma">Turma</label>
+                    <input
+                        type="text"
+                        id="turma"
+                        placeholder="Ex.: 1º A"
+                        required
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="turno">Turno escolar</label>
+                    <input
+                        type="text"
+                        id="turno"
+                        value="Tarde"
+                        readonly
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="participacao">Como deseja participar?</label>
+                    <select id="participacao" required>
+                        <option value="">Selecione uma opção</option>
+                        <option>Somente esportes</option>
+                        <option>Somente estudos</option>
+                        <option>Esportes e estudos</option>
+                    </select>
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="esporte">Modalidade esportiva de interesse</label>
+                    <input
+                        type="text"
+                        id="esporte"
+                        placeholder="Ex.: Vôlei, futsal, basquete..."
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="materias">Matérias de interesse</label>
+                    <input
+                        type="text"
+                        id="materias"
+                        placeholder="Ex.: Matemática, História..."
+                    >
+                </div>
+
+                <button type="submit">
+                    Enviar inscrição →
+                </button>
+
+                <p id="mensagem-inscricao" class="mensagem-inscricao"></p>
+
+            </form>
+
+        </div>
+
+        <a href="acesso.html" class="voltar">
+            ← Voltar às opções de acesso
+        </a>
+
+    </main>
+
+</body>
+</html>
