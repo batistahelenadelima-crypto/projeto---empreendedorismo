@@ -3022,3 +3022,22 @@ button:hover {
         width: 100%;
     }
 }
+/* NAVEGAÇÃO DO PERFIL */
+
+.navegacao-perfil {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .topo-perfil {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navegacao-perfil {
+        gap: 10px;
+    }
+}
