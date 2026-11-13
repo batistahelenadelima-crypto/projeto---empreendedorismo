@@ -2178,3 +2178,474 @@ button:hover {
     }
 
 }
+
+/* ===== ÁREA DOS REPRESENTANTES ===== */
+
+.pagina-representante {
+    min-height: 100vh;
+    background: #FFF8FA;
+    padding: 0 7% 45px;
+}
+
+.topo-representante {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-representante {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+}
+
+.logo-representante span {
+    color: #E96791;
+}
+
+.voltar-representante {
+    color: #9D4268;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* TELA DE ACESSO */
+
+.acesso-representante {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+.cartao-acesso-representante {
+    width: 100%;
+    max-width: 480px;
+    padding: 45px;
+    background: #FFFCFD;
+    border: 1px solid #F3DCE5;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(157, 66, 104, 0.08);
+    text-align: center;
+}
+
+.icone-acesso-representante {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCE8EF;
+    border-radius: 22px;
+    font-size: 2rem;
+}
+
+.cartao-acesso-representante > span {
+    color: #9D4268;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.cartao-acesso-representante h1 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin: 12px 0;
+}
+
+.cartao-acesso-representante > p {
+    color: #625966;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.aviso-demonstracao {
+    margin: 25px 0;
+    padding: 17px;
+    background: #FFF1F5;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.aviso-demonstracao strong {
+    color: #9D4268;
+    font-size: 0.9rem;
+}
+
+.aviso-demonstracao p {
+    color: #625966;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+.cartao-acesso-representante button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 13px;
+    background: #E96791;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cartao-acesso-representante button:hover {
+    background: #9D4268;
+    transform: translateY(-2px);
+}
+
+.cartao-acesso-representante > a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #9D4268;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+/* CABEÇALHO DO PAINEL */
+
+.painel-representante {
+    padding-top: 35px;
+}
+
+.boas-vindas-representante {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 40px;
+    border-radius: 24px;
+    background: linear-gradient(120deg, #FCE8EF, #F9D5E1);
+}
+
+.boas-vindas-representante span {
+    color: #9D4268;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.boas-vindas-representante h1 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin: 10px 0;
+}
+
+.boas-vindas-representante p {
+    color: #625966;
+    line-height: 1.6;
+}
+
+.boas-vindas-representante button {
+    border: 1px solid #9D4268;
+    background: transparent;
+    color: #9D4268;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.boas-vindas-representante button:hover {
+    background: #9D4268;
+    color: white;
+}
+
+/* CARTÕES DE RESUMO */
+
+.resumo-representante {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0 55px;
+}
+
+.cartao-resumo {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 25px;
+    background: #FFFCFD;
+    border: 1px solid #F3DCE5;
+    border-radius: 18px;
+}
+
+.cartao-resumo > span {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCE8EF;
+    border-radius: 15px;
+    font-size: 1.4rem;
+}
+
+.cartao-resumo p {
+    color: #766773;
+    font-size: 0.82rem;
+}
+
+.cartao-resumo h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem;
+    margin-top: 4px;
+}
+
+/* LISTA DE ALUNOS */
+
+.secao-alunos-representante {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.titulo-painel-representante span {
+    color: #9D4268;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.titulo-painel-representante h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem;
+    margin: 9px 0;
+}
+
+.titulo-painel-representante p {
+    color: #766773;
+    font-size: 0.9rem;
+}
+
+.filtros-representante {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.filtros-representante input,
+.filtros-representante select {
+    min-width: 0;
+    padding: 14px 16px;
+    border: 1px solid #EAD3DD;
+    border-radius: 12px;
+    background: #FFFCFD;
+    color: #4A353B;
+    font-family: inherit;
+    outline: none;
+}
+
+.filtros-representante input {
+    flex: 1;
+}
+
+.filtros-representante input:focus,
+.filtros-representante select:focus {
+    border-color: #E96791;
+}
+
+.lista-alunos-representante {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.cartao-aluno-representante {
+    padding: 23px;
+    background: #FFFCFD;
+    border: 1px solid #F3DCE5;
+    border-radius: 18px;
+    box-shadow: 0 7px 20px rgba(157, 66, 104, 0.04);
+}
+
+.informacoes-aluno {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar-aluno {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.informacoes-aluno h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.informacoes-aluno p {
+    color: #766773;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.pontos-aluno {
+    margin-left: auto;
+    text-align: right;
+}
+
+.pontos-aluno strong {
+    display: block;
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+}
+
+.pontos-aluno span {
+    color: #766773;
+    font-size: 0.75rem;
+}
+
+.acoes-aluno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #F3E5EB;
+}
+
+.acoes-aluno button {
+    flex: 1;
+    min-width: 190px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 11px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.acoes-aluno button:hover:not(:disabled) {
+    background: #E96791;
+    color: white;
+}
+
+.acoes-aluno button:disabled {
+    background: #F1E9ED;
+    color: #998B92;
+    cursor: default;
+}
+
+.nenhum-aluno {
+    padding: 35px;
+    text-align: center;
+    background: #FFFCFD;
+    border: 1px solid #F3DCE5;
+    border-radius: 18px;
+}
+
+.nenhum-aluno h3 {
+    color: #9D4268;
+    margin-bottom: 8px;
+}
+
+.nenhum-aluno p {
+    color: #766773;
+    font-size: 0.9rem;
+}
+
+/* EXPLICAÇÃO DA PONTUAÇÃO */
+
+.aviso-pontos-representante {
+    max-width: 1000px;
+    margin: 30px auto 0;
+    padding: 22px;
+    background: #FCE8EF;
+    border-radius: 16px;
+}
+
+.aviso-pontos-representante strong {
+    color: #9D4268;
+}
+
+.aviso-pontos-representante p {
+    color: #625966;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 7px;
+}
+
+.rodape-representante {
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid #F0DCE5;
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.85rem;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 750px) {
+
+    .resumo-representante {
+        grid-template-columns: 1fr;
+    }
+
+    .boas-vindas-representante {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 30px 25px;
+    }
+
+    .filtros-representante {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .pagina-representante {
+        padding: 0 16px 35px;
+    }
+
+    .cartao-acesso-representante {
+        padding: 30px 22px;
+    }
+
+    .informacoes-aluno {
+        flex-wrap: wrap;
+    }
+
+    .pontos-aluno {
+        margin-left: auto;
+    }
+
+    .acoes-aluno {
+        flex-direction: column;
+    }
+
+    .acoes-aluno button {
+        width: 100%;
+    }
+
+}
