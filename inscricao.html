@@ -30,8 +30,7 @@
                 </p>
             </div>
 
-            <form class="form-inscricao"
-                onsubmit="event.preventDefault(); document.getElementById('mensagem-inscricao').textContent = 'Inscrição de demonstração preenchida! O cadastro oficial estará disponível quando a plataforma estiver conectada ao sistema de contas.';">
+            <form class="form-inscricao">
 
                 <div class="campo-inscricao">
                     <label for="nome">Nome completo</label>
@@ -39,6 +38,38 @@
                         type="text"
                         id="nome"
                         placeholder="Digite seu nome completo"
+                        required
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seunome@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="senha">Crie uma senha</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Mínimo de 8 caracteres"
+                        minlength="8"
+                        required
+                    >
+                </div>
+
+                <div class="campo-inscricao">
+                    <label for="confirmar-senha">Confirme sua senha</label>
+                    <input
+                        type="password"
+                        id="confirmar-senha"
+                        placeholder="Digite sua senha novamente"
+                        minlength="8"
                         required
                     >
                 </div>
@@ -61,9 +92,9 @@
                         <label for="ano">Ano escolar</label>
                         <select id="ano" required>
                             <option value="">Selecione</option>
-                            <option>1º ano</option>
-                            <option>2º ano</option>
-                            <option>3º ano</option>
+                            <option value="1">1º ano</option>
+                            <option value="2">2º ano</option>
+                            <option value="3">3º ano</option>
                         </select>
                     </div>
 
@@ -93,9 +124,9 @@
                     <label for="participacao">Como deseja participar?</label>
                     <select id="participacao" required>
                         <option value="">Selecione uma opção</option>
-                        <option>Somente esportes</option>
-                        <option>Somente estudos</option>
-                        <option>Esportes e estudos</option>
+                        <option value="esportes">Somente esportes</option>
+                        <option value="estudos">Somente estudos</option>
+                        <option value="ambos">Esportes e estudos</option>
                     </select>
                 </div>
 
@@ -132,8 +163,10 @@
         </a>
 
     </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="supabase.js"></script>
+
 </body>
 </html>
