@@ -560,3 +560,164 @@ button:hover {
         padding: 35px 22px;
     }
 }
+
+/* ===== REFORMULAÇÃO DO LOGIN ===== */
+
+.pagina-login {
+    min-height: 100vh;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 10% 15%, #FFFFFF 0, transparent 25%),
+        radial-gradient(circle at 90% 85%, #F5B7CB 0, transparent 28%),
+        linear-gradient(135deg, #FCE8EF, #F9D5E1);
+}
+
+.logo-login {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+    margin-bottom: 28px;
+}
+
+.logo-login span {
+    color: #E96791;
+}
+
+.caixa-login {
+    width: 100%;
+    max-width: 460px;
+    padding: 42px;
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 28px;
+    box-shadow: 0 18px 50px rgba(157, 66, 104, 0.11);
+}
+
+.cabecalho-login {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.cabecalho-login > span {
+    color: #E96791;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.cabecalho-login h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: 1.85rem;
+    margin: 15px 0 10px;
+}
+
+.cabecalho-login p {
+    color: #625966;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.campo-login {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.campo-login label {
+    color: #514956;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.campo-login input {
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid #E8CCD8;
+    border-radius: 13px;
+    background: #FFF8FA;
+    color: #292333;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.campo-login input:focus {
+    outline: none;
+    border-color: #E96791;
+    box-shadow: 0 0 0 3px rgba(233, 103, 145, 0.12);
+}
+
+.form-login button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 16px;
+    border-radius: 13px;
+}
+
+.divisor-login {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 28px 0;
+    color: #B69AA7;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.divisor-login::before,
+.divisor-login::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #F0DCE5;
+}
+
+.texto-cadastro {
+    text-align: center;
+    color: #625966;
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.texto-cadastro a {
+    display: inline-block;
+    color: #9D4268;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.texto-cadastro a:hover {
+    text-decoration: underline;
+}
+
+.pagina-login .voltar {
+    margin-top: 28px;
+}
+
+@media (max-width: 500px) {
+    .caixa-login {
+        padding: 32px 23px;
+    }
+
+    .cabecalho-login h2 {
+        font-size: 1.55rem;
+    }
+
+    .logo-login {
+        font-size: 2.2rem;
+    }
+}
