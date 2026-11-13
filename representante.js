@@ -1,4 +1,4 @@
-
+  
 document.addEventListener("DOMContentLoaded", async function () {
 
     const db = window.supabaseClient;
@@ -9,10 +9,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const listaAlunos = document.getElementById("lista-alunos");
     const listaInscricoes = document.getElementById("lista-inscricoes");
+    const listaAtividades = document.getElementById("lista-atividades");
 
     const pesquisarAluno = document.getElementById("pesquisar-aluno");
     const filtroParticipacao = document.getElementById("filtro-participacao");
     const botaoSair = document.getElementById("sair-demonstracao");
+
+    const formularioAtividade = document.getElementById("form-nova-atividade");
+    const mensagemAtividade = document.getElementById("mensagem-atividade");
 
     let alunos = [];
 
@@ -64,9 +68,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         painel.querySelector(".boas-vindas-representante h1").textContent =
             `Olá, ${nome}!`;
 
-        // CARREGAR INSCRIÇÕES E ALUNOS
+        // CARREGAR DADOS
         await carregarInscricoes();
         await carregarAlunos();
+        await carregarAtividades();
 
     } catch (erro) {
 
@@ -92,7 +97,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         elemento.textContent =
-            conteudo === null || conteudo === undefined ? "" : String(conteudo);
+            conteudo === null || conteudo === undefined
+                ? ""
+                : String(conteudo);
 
         return elemento;
 
@@ -195,11 +202,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             );
 
             if (aluno.sport_preference) {
-
                 dados.appendChild(
                     criarTexto("p", "", `Esporte: ${aluno.sport_preference}`)
                 );
-
             }
 
             if (aluno.subject_preferences) {
@@ -276,14 +281,31 @@ document.addEventListener("DOMContentLoaded", async function () {
         botaoAprovar.disabled = true;
         botaoRejeitar.disabled = true;
 
-        const { data, error } = await db.rpc("review_enrollment", {
-            p_enrollment_id: id,
-            p_status: status
-        });
+        try {
 
-        if (error || data !== true) {
+            const { data, error } = await db.rpc("review_enrollment", {
+                p_enrollment_id: id,
+                p_status: status
+            });
 
-            console.error("Erro ao avaliar inscrição:", error);
+            if (error) throw error;
+
+            if (data !== true) {
+                throw new Error("A inscrição não foi atualizada.");
+            }
+
+            alert(
+                status === "approved"
+                    ? "Inscrição aprovada com sucesso!"
+                    : "Inscrição rejeitada com sucesso!"
+            );
+
+            await carregarInscricoes();
+            await carregarAlunos();
+
+        } catch (erro) {
+
+            console.error("Erro ao avaliar inscrição:", erro);
 
             alert(
                 "Não foi possível atualizar a inscrição. Tente novamente."
@@ -292,18 +314,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             botaoAprovar.disabled = false;
             botaoRejeitar.disabled = false;
 
-            return;
-
         }
-
-        alert(
-            status === "approved"
-                ? "Inscrição aprovada com sucesso!"
-                : "Inscrição rejeitada com sucesso!"
-        );
-
-        await carregarInscricoes();
-        await carregarAlunos();
 
     }
 
@@ -554,6 +565,204 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     }
+
+    // FORMATAR DATA E HORÁRIO
+    function formatarData(data) {
+
+        if (!data) return "Horário não informado";
+
+        return new Date(data).toLocaleString("pt-BR", {
+            dateStyle: "short",
+            timeStyle: "short"
+        });
+
+    }
+
+    // CARREGAR ATIVIDADES
+    async function carregarAtividades() {
+
+        listaAtividades.innerHTML =
+            "<p>Carregando atividades...</p>";
+
+        const { data: atividades, error } = await db.rpc(
+            "get_activities_for_staff"
+        );
+
+        if (error) throw error;
+
+        listaAtividades.innerHTML = "";
+
+        if (!atividades || atividades.length === 0) {
+
+            listaAtividades.innerHTML = `
+                <div class="nenhum-aluno">
+                    <h3>Nenhuma atividade cadastrada</h3>
+                    <p>As atividades criadas aparecerão aqui.</p>
+                </div>
+            `;
+
+            return;
+
+        }
+
+        atividades.forEach(function (atividade) {
+
+            const cartao = document.createElement("article");
+            cartao.className = "cartao-aluno-representante";
+
+            const dados = document.createElement("div");
+
+            const categoria =
+                atividade.category === "esporte" ? "Esporte" : "Estudo";
+
+            dados.appendChild(
+                criarTexto("h3", "", atividade.title)
+            );
+
+            dados.appendChild(
+                criarTexto("p", "", `Categoria: ${categoria}`)
+            );
+
+            dados.appendChild(
+                criarTexto(
+                    "p",
+                    "",
+                    atividade.description || "Sem descrição."
+                )
+            );
+
+            dados.appendChild(
+                criarTexto(
+                    "p",
+                    "",
+                    `Início: ${formatarData(atividade.starts_at)}`
+                )
+            );
+
+            dados.appendChild(
+                criarTexto(
+                    "p",
+                    "",
+                    `Término: ${formatarData(atividade.ends_at)}`
+                )
+            );
+
+            dados.appendChild(
+                criarTexto(
+                    "p",
+                    "",
+                    atividade.is_active ? "Atividade ativa" : "Atividade inativa"
+                )
+            );
+
+            cartao.appendChild(dados);
+            listaAtividades.appendChild(cartao);
+
+        });
+
+    }
+
+    // CADASTRAR NOVA ATIVIDADE
+    formularioAtividade.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const titulo =
+            document.getElementById("atividade-titulo").value.trim();
+
+        const descricao =
+            document.getElementById("atividade-descricao").value.trim();
+
+        const categoria =
+            document.getElementById("atividade-categoria").value;
+
+        const inicio =
+            document.getElementById("atividade-inicio").value;
+
+        const fim =
+            document.getElementById("atividade-fim").value;
+
+        if (!titulo || !categoria || !inicio || !fim) {
+
+            mensagemAtividade.textContent =
+                "Preencha todos os campos obrigatórios.";
+
+            return;
+
+        }
+
+        const dataInicio = new Date(inicio);
+        const dataFim = new Date(fim);
+
+        if (
+            Number.isNaN(dataInicio.getTime()) ||
+            Number.isNaN(dataFim.getTime())
+        ) {
+
+            mensagemAtividade.textContent =
+                "Informe datas e horários válidos.";
+
+            return;
+
+        }
+
+        if (dataFim <= dataInicio) {
+
+            mensagemAtividade.textContent =
+                "O término deve ser posterior ao início.";
+
+            return;
+
+        }
+
+        const botaoEnviar =
+            formularioAtividade.querySelector('button[type="submit"]');
+
+        botaoEnviar.disabled = true;
+        botaoEnviar.textContent = "Cadastrando...";
+
+        mensagemAtividade.textContent = "";
+
+        try {
+
+            const { data, error } = await db.rpc("create_activity", {
+
+                p_title: titulo,
+                p_description: descricao || null,
+                p_category: categoria,
+                p_starts_at: dataInicio.toISOString(),
+                p_ends_at: dataFim.toISOString()
+
+            });
+
+            if (error) throw error;
+
+            if (!data) {
+                throw new Error("A atividade não foi cadastrada.");
+            }
+
+            mensagemAtividade.textContent =
+                "Atividade cadastrada com sucesso!";
+
+            formularioAtividade.reset();
+
+            await carregarAtividades();
+
+        } catch (erro) {
+
+            console.error("Erro ao cadastrar atividade:", erro);
+
+            mensagemAtividade.textContent =
+                "Não foi possível cadastrar a atividade. Verifique os dados e tente novamente.";
+
+        } finally {
+
+            botaoEnviar.disabled = false;
+            botaoEnviar.textContent = "Cadastrar atividade";
+
+        }
+
+    });
 
     // PESQUISA E FILTROS
     pesquisarAluno.addEventListener("input", mostrarAlunos);
