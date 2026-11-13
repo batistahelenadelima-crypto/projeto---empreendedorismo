@@ -1932,3 +1932,249 @@ button:hover {
     }
 
 }
+
+/* ===== NOTIFICAÇÕES ===== */
+
+.pagina-notificacoes {
+    min-height: 100vh;
+    background: #FFF8FA;
+    padding: 0 7% 50px;
+}
+
+.topo-notificacoes {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-notificacoes {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+}
+
+.logo-notificacoes span {
+    color: #E96791;
+}
+
+.voltar-notificacoes {
+    color: #9D4268;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cabecalho-notificacoes {
+    padding: 50px;
+    border-radius: 25px;
+    background: linear-gradient(120deg, #FCE8EF, #F9D5E1);
+}
+
+.cabecalho-notificacoes > span {
+    color: #9D4268;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.cabecalho-notificacoes h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 12px 0;
+}
+
+.cabecalho-notificacoes p {
+    color: #625966;
+    line-height: 1.7;
+    max-width: 550px;
+}
+
+.conteudo-notificacoes {
+    max-width: 950px;
+    margin: 55px auto;
+}
+
+.titulo-notificacoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.titulo-notificacoes h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem;
+}
+
+.titulo-notificacoes p {
+    color: #625966;
+    margin-top: 5px;
+}
+
+.titulo-notificacoes button {
+    border: none;
+    background: #FCE8EF;
+    color: #9D4268;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.titulo-notificacoes button:hover {
+    background: #F5D5E1;
+}
+
+.titulo-notificacoes button:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
+
+.lista-notificacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.notificacao {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(157, 66, 104, 0.05);
+    transition: 0.3s;
+}
+
+.notificacao:hover {
+    transform: translateY(-3px);
+}
+
+.notificacao.nao-lida {
+    background: #FFF1F5;
+    border-color: #EFC6D5;
+}
+
+.icone-notificacao {
+    min-width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCE8EF;
+    border-radius: 16px;
+    font-size: 1.5rem;
+}
+
+.texto-notificacao {
+    flex: 1;
+}
+
+.categoria-notificacao {
+    color: #9D4268;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.texto-notificacao h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    margin: 7px 0;
+}
+
+.texto-notificacao p {
+    color: #625966;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.texto-notificacao small {
+    display: block;
+    color: #A18D98;
+    font-size: 0.75rem;
+    margin-top: 12px;
+}
+
+.ponto-notificacao {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #E96791;
+    margin-top: 8px;
+}
+
+.sem-notificacoes {
+    padding: 40px 20px;
+    text-align: center;
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.sem-notificacoes span {
+    font-size: 2rem;
+}
+
+.sem-notificacoes h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    margin: 12px 0;
+}
+
+.sem-notificacoes p {
+    color: #625966;
+    font-size: 0.9rem;
+}
+
+.rodape-notificacoes {
+    margin-top: 65px;
+    padding-top: 25px;
+    border-top: 1px solid #F0DCE5;
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+
+    .pagina-notificacoes {
+        padding: 0 18px 35px;
+    }
+
+    .cabecalho-notificacoes {
+        padding: 35px 25px;
+    }
+
+    .titulo-notificacoes {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .titulo-notificacoes button {
+        width: 100%;
+    }
+
+    .notificacao {
+        padding: 20px 15px;
+        gap: 13px;
+    }
+
+    .icone-notificacao {
+        min-width: 43px;
+        height: 43px;
+        font-size: 1.2rem;
+    }
+
+}
