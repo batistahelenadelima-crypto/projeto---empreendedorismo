@@ -161,3 +161,145 @@ button:hover {
         max-width: 450px;
     }
 }
+
+
+/* ===== NOVO VISUAL DO CONECTA+ ===== */
+
+/* Tela inicial */
+
+header {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 20%, #ffffff 0, transparent 25%),
+        radial-gradient(circle at 85% 80%, #F5B7CB 0, transparent 30%),
+        linear-gradient(135deg, #FCE8EF, #F9D5E1);
+}
+
+header h1 {
+    letter-spacing: -6px;
+    text-shadow: 0 5px 25px rgba(157, 66, 104, 0.10);
+}
+
+header p {
+    color: #514956;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+}
+
+/* Botões */
+
+button {
+    box-shadow: 0 8px 20px rgba(157, 66, 104, 0.15);
+}
+
+button:hover {
+    box-shadow: 0 10px 25px rgba(157, 66, 104, 0.25);
+}
+
+/* Apresentação */
+
+.apresentacao {
+    max-width: 850px;
+    margin: 90px auto;
+    padding: 65px 50px;
+    border: 1px solid #F5DCE5;
+    box-shadow: 0 15px 45px rgba(157, 66, 104, 0.08);
+}
+
+.apresentacao h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.apresentacao p {
+    color: #625966;
+    font-size: 1.02rem;
+}
+
+/* Seção como funciona */
+
+.como-funciona {
+    padding: 100px 30px;
+    background:
+        linear-gradient(180deg, #FCE8EF, #FFF5F8);
+}
+
+.titulo-secao h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: -1px;
+}
+
+.titulo-secao p {
+    font-size: 1.05rem;
+}
+
+/* Cartões */
+
+.atividades {
+    gap: 30px;
+}
+
+.cartao-atividade {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #F5DCE5;
+    box-shadow: 0 12px 30px rgba(157, 66, 104, 0.07);
+}
+
+.cartao-atividade:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(157, 66, 104, 0.13);
+}
+
+.icone {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FCE8EF;
+    border-radius: 22px;
+    font-size: 2.3rem;
+    margin-bottom: 22px;
+}
+
+.cartao-atividade h3 {
+    font-size: 1.25rem;
+}
+
+.cartao-atividade p {
+    max-width: 280px;
+}
+
+/* Frase de identidade */
+
+.frase-final {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.2px;
+}
+
+/* Ajustes para celulares */
+
+@media (max-width: 750px) {
+    .apresentacao {
+        margin: 45px 18px;
+        padding: 40px 22px;
+    }
+
+    .como-funciona {
+        padding: 70px 20px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 2rem;
+    }
+
+    header h1 {
+        letter-spacing: -3px;
+    }
+}
