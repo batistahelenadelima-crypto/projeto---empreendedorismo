@@ -25,7 +25,7 @@
 
         </header>
 
-        <!-- ACESSO DEMONSTRATIVO -->
+        <!-- ACESSO DO REPRESENTANTE -->
 
         <section class="acesso-representante" id="acesso-representante">
 
@@ -43,18 +43,17 @@
                 </p>
 
                 <div class="aviso-demonstracao">
-                    <strong>Versão demonstrativa</strong>
+
+                    <strong>Acesso restrito</strong>
+
                     <p>
-                        A autenticação ainda será conectada ao sistema
-                        de contas do Conecta+.
+                        Entre na sua conta do Conecta+ para verificar
+                        sua autorização de acesso ao painel.
                     </p>
+
                 </div>
 
-                <button id="entrar-demonstracao">
-                    Visualizar painel demonstrativo
-                </button>
-
-                <a href="index.html">Voltar para o site</a>
+                <a href="login.html">Ir para o login</a>
 
             </div>
 
@@ -69,7 +68,9 @@
 
                 <div>
                     <span>PAINEL DE ORGANIZAÇÃO</span>
+
                     <h1>Olá, representante!</h1>
+
                     <p>
                         Acompanhe a participação dos alunos
                         e mantenha o Conecta+ organizado.
@@ -87,27 +88,36 @@
             <div class="resumo-representante">
 
                 <article class="cartao-resumo">
+
                     <span>👥</span>
+
                     <div>
                         <p>Alunos cadastrados</p>
-                        <h2 id="total-alunos">3</h2>
+                        <h2 id="total-alunos">0</h2>
                     </div>
+
                 </article>
 
                 <article class="cartao-resumo">
+
                     <span>🏅</span>
+
                     <div>
                         <p>Pontos registrados</p>
                         <h2 id="total-pontos">0</h2>
                     </div>
+
                 </article>
 
                 <article class="cartao-resumo">
+
                     <span>📋</span>
+
                     <div>
                         <p>Registros realizados</p>
                         <h2 id="total-registros">0</h2>
                     </div>
+
                 </article>
 
             </div>
@@ -117,13 +127,17 @@
             <section class="secao-alunos-representante">
 
                 <div class="titulo-painel-representante">
+
                     <div>
                         <span>ACOMPANHAMENTO</span>
+
                         <h2>Alunos participantes</h2>
+
                         <p>
                             Registre a participação dos alunos nas atividades.
                         </p>
                     </div>
+
                 </div>
 
                 <div class="filtros-representante">
@@ -135,43 +149,73 @@
                     >
 
                     <select id="filtro-participacao">
-                        <option value="todos">Todos os participantes</option>
-                        <option value="esportes">Esportes</option>
-                        <option value="estudos">Estudos</option>
-                        <option value="ambos">Esportes e estudos</option>
+
+                        <option value="todos">
+                            Todos os participantes
+                        </option>
+
+                        <option value="esportes">
+                            Esportes
+                        </option>
+
+                        <option value="estudos">
+                            Estudos
+                        </option>
+
+                        <option value="ambos">
+                            Esportes e estudos
+                        </option>
+
                     </select>
 
                 </div>
 
-                <div class="lista-alunos-representante" id="lista-alunos">
+                <div
+                    class="lista-alunos-representante"
+                    id="lista-alunos">
 
-                    <!-- Os alunos serão inseridos pelo JavaScript -->
+                    <!-- Os alunos serão carregados pelo JavaScript -->
 
                 </div>
 
             </section>
 
+            <!-- PONTUAÇÃO -->
+
             <div class="aviso-pontos-representante">
+
                 <strong>Como funciona a pontuação?</strong>
+
                 <p>
                     Presença registrada: +10 pontos.
                     Atividade concluída: +15 pontos.
-                    Cada registro só pode ser contabilizado uma vez
-                    por aluno nesta demonstração.
+                    Cada registro será contabilizado uma única vez
+                    por aluno em cada atividade.
                 </p>
+
             </div>
 
         </section>
 
         <footer class="rodape-representante">
-            <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
+
+            <p>
+                Conecta+ · Esporte e conhecimento caminhando juntos!
+            </p>
+
         </footer>
 
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
-<script src="supabase.js"></script>
-<script src="representante.js"></script>
+    <!-- CONEXÃO COM O SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase-config.js"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="representante.js"></script>
+
 </body>
 </html>
