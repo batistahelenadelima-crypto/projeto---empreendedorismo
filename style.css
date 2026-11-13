@@ -1649,3 +1649,286 @@ button:hover {
     }
 
 }
+
+/* ===== CALENDÁRIO ===== */
+
+.pagina-calendario {
+    min-height: 100vh;
+    background: #FFF8FA;
+    padding: 0 7% 50px;
+}
+
+.topo-calendario {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-calendario {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #9D4268;
+    text-decoration: none;
+}
+
+.logo-calendario span {
+    color: #E96791;
+}
+
+.voltar-calendario {
+    color: #9D4268;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.boas-vindas-calendario {
+    padding: 55px 50px;
+    border-radius: 25px;
+    background: linear-gradient(120deg, #FCE8EF, #F9D5E1);
+}
+
+.boas-vindas-calendario > span,
+.titulo-calendario > span {
+    color: #9D4268;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.boas-vindas-calendario h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #9D4268;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 12px 0;
+}
+
+.boas-vindas-calendario p,
+.titulo-calendario p {
+    color: #625966;
+    line-height: 1.7;
+}
+
+.boas-vindas-calendario p {
+    max-width: 550px;
+}
+
+.area-calendario,
+.legenda-calendario,
+.eventos-calendario {
+    margin-top: 60px;
+}
+
+.titulo-calendario {
+    margin-bottom: 25px;
+}
+
+.titulo-calendario h2 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.painel-calendario {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+}
+
+.cabecalho-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.cabecalho-calendario h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.cabecalho-calendario p {
+    color: #887B86;
+    font-size: 0.85rem;
+}
+
+.controles-calendario {
+    display: flex;
+    gap: 10px;
+}
+
+.controles-calendario button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 12px;
+    background: #FCE8EF;
+    color: #9D4268;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.controles-calendario button:hover {
+    background: #F5D1DF;
+}
+
+.dias-semana,
+.dias-calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.dias-semana span {
+    padding: 15px 5px;
+    color: #9D4268;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.dia-calendario,
+.dia-vazio {
+    min-height: 65px;
+    margin: 3px;
+}
+
+.dia-calendario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+    color: #625966;
+    background: #FFF8FA;
+    border: 1px solid #F7E9EF;
+    transition: 0.2s;
+}
+
+.dia-calendario:hover {
+    background: #FCE8EF;
+}
+
+.dia-calendario.dia-hoje {
+    background: #E96791;
+    color: white;
+    font-weight: 700;
+    border-color: #E96791;
+}
+
+.itens-legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    color: #625966;
+    font-size: 0.9rem;
+}
+
+.itens-legenda div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.bolinha {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.bolinha.esporte {
+    background: #E96791;
+}
+
+.bolinha.estudo {
+    background: #9D4268;
+}
+
+.bolinha.pessoal {
+    background: #8C83B5;
+}
+
+.lista-eventos {
+    background: #FFFCFD;
+    border: 1px solid #F5DCE5;
+    border-radius: 22px;
+    padding: 35px 25px;
+    box-shadow: 0 10px 30px rgba(157, 66, 104, 0.06);
+}
+
+.evento-vazio {
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.evento-vazio > span {
+    font-size: 2.5rem;
+}
+
+.evento-vazio h3 {
+    color: #9D4268;
+    font-family: 'Poppins', sans-serif;
+    margin: 15px 0 10px;
+}
+
+.evento-vazio p {
+    color: #625966;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.rodape-calendario {
+    margin-top: 65px;
+    padding-top: 25px;
+    border-top: 1px solid #F0DCE5;
+    text-align: center;
+    color: #9D4268;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+
+    .pagina-calendario {
+        padding: 0 18px 35px;
+    }
+
+    .boas-vindas-calendario {
+        padding: 38px 25px;
+    }
+
+    .painel-calendario {
+        padding: 15px 8px;
+    }
+
+    .dia-calendario,
+    .dia-vazio {
+        min-height: 45px;
+        margin: 2px;
+        font-size: 0.8rem;
+    }
+
+    .dias-semana span {
+        font-size: 0.7rem;
+    }
+
+    .topo-calendario {
+        min-height: 75px;
+    }
+
+    .logo-calendario {
+        font-size: 1.7rem;
+    }
+
+    .area-calendario,
+    .legenda-calendario,
+    .eventos-calendario {
+        margin-top: 45px;
+    }
+
+}
