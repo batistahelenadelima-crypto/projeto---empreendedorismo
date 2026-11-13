@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esportes | Conecta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="pagina-esportes">
+
+        <header class="topo-esportes">
+
+            <a href="perfil.html" class="logo-esportes">
+                CONECTA<span>+</span>
+            </a>
+
+            <a href="perfil.html" class="voltar-esportes">
+                ← Meu perfil
+            </a>
+
+        </header>
+
+        <section class="boas-vindas-esportes">
+
+            <span>ÁREA ESPORTIVA</span>
+
+            <h1>Movimente-se com a gente!</h1>
+
+            <p>
+                Descubra modalidades, participe dos treinos
+                e desenvolva suas habilidades.
+            </p>
+
+        </section>
+
+        <section class="modalidades-esportes">
+
+            <div class="titulo-esportes">
+                <span>DESCUBRA</span>
+                <h2>Nossas modalidades</h2>
+                <p>
+                    Você pode escolher mais de uma modalidade
+                    para participar do projeto.
+                </p>
+            </div>
+
+            <div class="lista-modalidades">
+
+                <article class="cartao-esporte">
+
+                    <div class="imagem-esporte">🏐</div>
+
+                    <h3>Vôlei</h3>
+
+                    <p>
+                        Desenvolva trabalho em equipe,
+                        coordenação e habilidades esportivas.
+                    </p>
+
+                    <span class="categoria-esporte">Esporte coletivo</span>
+
+                </article>
+
+                <article class="cartao-esporte">
+
+                    <div class="imagem-esporte">⚽</div>
+
+                    <h3>Futebol</h3>
+
+                    <p>
+                        Trabalhe estratégia, cooperação
+                        e desenvolvimento físico.
+                    </p>
+
+                    <span class="categoria-esporte">Esporte coletivo</span>
+
+                </article>
+
+                <article class="cartao-esporte">
+
+                    <div class="imagem-esporte">🏀</div>
+
+                    <h3>Basquete</h3>
+
+                    <p>
+                        Aprimore agilidade, precisão
+                        e tomada de decisões.
+                    </p>
+
+                    <span class="categoria-esporte">Esporte coletivo</span>
+
+                </article>
+
+                <article class="cartao-esporte">
+
+                    <div class="imagem-esporte">🏃</div>
+
+                    <h3>Atletismo</h3>
+
+                    <p>
+                        Explore diferentes modalidades
+                        e desenvolva suas habilidades.
+                    </p>
+
+                    <span class="categoria-esporte">Esporte individual</span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="inscricao-esportes">
+
+            <div class="titulo-esportes">
+                <span>FAÇA PARTE</span>
+                <h2>Quero participar!</h2>
+                <p>
+                    Selecione as modalidades que despertam
+                    seu interesse.
+                </p>
+            </div>
+
+            <form class="form-esportes" id="form-esportes">
+
+                <label>Escolha suas modalidades:</label>
+
+                <div class="opcoes-esportes">
+
+                    <label class="opcao-esporte">
+                        <input type="checkbox" name="modalidades" value="Vôlei">
+                        <span>🏐 Vôlei</span>
+                    </label>
+
+                    <label class="opcao-esporte">
+                        <input type="checkbox" name="modalidades" value="Futebol">
+                        <span>⚽ Futebol</span>
+                    </label>
+
+                    <label class="opcao-esporte">
+                        <input type="checkbox" name="modalidades" value="Basquete">
+                        <span>🏀 Basquete</span>
+                    </label>
+
+                    <label class="opcao-esporte">
+                        <input type="checkbox" name="modalidades" value="Atletismo">
+                        <span>🏃 Atletismo</span>
+                    </label>
+
+                </div>
+
+                <button type="submit" class="botao-esportes">
+                    Confirmar interesse →
+                </button>
+
+                <p id="mensagem-esportes"></p>
+
+            </form>
+
+        </section>
+
+        <footer class="rodape-esportes">
+            <p>Conecta+ · Esporte e conhecimento caminhando juntos!</p>
+        </footer>
+
+    </main>
+
+    <script>
+
+        const formulario = document.getElementById("form-esportes");
+
+        formulario.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const selecionadas = document.querySelectorAll(
+                'input[name="modalidades"]:checked'
+            );
+
+            const mensagem = document.getElementById("mensagem-esportes");
+
+            if (selecionadas.length === 0) {
+                mensagem.textContent = "Selecione pelo menos uma modalidade.";
+                return;
+            }
+
+            const modalidades = Array.from(selecionadas).map(
+                opcao => opcao.value
+            );
+
+            mensagem.textContent =
+                "Interesse registrado nesta demonstração: " +
+                modalidades.join(", ") + ".";
+
+        });
+
+    </script>
+
+</body>
+</html>
