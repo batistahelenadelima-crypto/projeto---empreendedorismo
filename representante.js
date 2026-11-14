@@ -17,6 +17,25 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const formularioAtividade = document.getElementById("form-nova-atividade");
     const mensagemAtividade = document.getElementById("mensagem-atividade");
+    // ELEMENTOS DE NOTIFICAÇÃO
+
+const formularioNotificacao =
+    document.getElementById("form-notificacao");
+
+const seletorNotificacao =
+    document.getElementById("notificacao-aluno");
+
+const tituloNotificacao =
+    document.getElementById("notificacao-titulo");
+
+const textoNotificacao =
+    document.getElementById("notificacao-mensagem");
+
+const mensagemNotificacao =
+    document.getElementById("mensagem-notificacao");
+
+const botaoEnviarNotificacao =
+    document.getElementById("botao-enviar-notificacao");
 
     let alunos = [];
     let atividades = [];
