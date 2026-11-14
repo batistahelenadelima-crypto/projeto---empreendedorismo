@@ -17,25 +17,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const formularioAtividade = document.getElementById("form-nova-atividade");
     const mensagemAtividade = document.getElementById("mensagem-atividade");
+
     // ELEMENTOS DE NOTIFICAÇÃO
-
-const formularioNotificacao =
-    document.getElementById("form-notificacao");
-
-const seletorNotificacao =
-    document.getElementById("notificacao-aluno");
-
-const tituloNotificacao =
-    document.getElementById("notificacao-titulo");
-
-const textoNotificacao =
-    document.getElementById("notificacao-mensagem");
-
-const mensagemNotificacao =
-    document.getElementById("mensagem-notificacao");
-
-const botaoEnviarNotificacao =
-    document.getElementById("botao-enviar-notificacao");
+    const formularioNotificacao = document.getElementById("form-notificacao");
+    const seletorNotificacao = document.getElementById("notificacao-aluno");
+    const tituloNotificacao = document.getElementById("notificacao-titulo");
+    const textoNotificacao = document.getElementById("notificacao-mensagem");
+    const mensagemNotificacao = document.getElementById("mensagem-notificacao");
+    const botaoEnviarNotificacao = document.getElementById("botao-enviar-notificacao");
 
     let alunos = [];
     let atividades = [];
@@ -122,7 +111,6 @@ const botaoEnviarNotificacao =
                 : String(conteudo);
 
         return elemento;
-
     }
 
     // BUSCAR PERFIS PELOS IDS
@@ -147,7 +135,6 @@ const botaoEnviarNotificacao =
         if (error) throw error;
 
         return data || [];
-
     }
 
     // CARREGAR INSCRIÇÕES PENDENTES
@@ -173,7 +160,6 @@ const botaoEnviarNotificacao =
             `;
 
             return;
-
         }
 
         const ids = inscricoes.map(function (inscricao) {
@@ -235,7 +221,6 @@ const botaoEnviarNotificacao =
                 dados.appendChild(
                     criarTexto("p", "", `Matérias: ${materias}`)
                 );
-
             }
 
             informacoes.appendChild(dados);
@@ -256,21 +241,11 @@ const botaoEnviarNotificacao =
             rejeitar.className = "botao-rejeitar";
 
             aprovar.addEventListener("click", function () {
-                avaliarInscricao(
-                    inscricao.id,
-                    "approved",
-                    aprovar,
-                    rejeitar
-                );
+                avaliarInscricao(inscricao.id, "approved", aprovar, rejeitar);
             });
 
             rejeitar.addEventListener("click", function () {
-                avaliarInscricao(
-                    inscricao.id,
-                    "rejected",
-                    aprovar,
-                    rejeitar
-                );
+                avaliarInscricao(inscricao.id, "rejected", aprovar, rejeitar);
             });
 
             botoes.appendChild(aprovar);
@@ -278,18 +253,11 @@ const botaoEnviarNotificacao =
 
             cartao.appendChild(botoes);
             listaInscricoes.appendChild(cartao);
-
         });
-
     }
 
     // APROVAR OU REJEITAR INSCRIÇÃO
-    async function avaliarInscricao(
-        id,
-        status,
-        botaoAprovar,
-        botaoRejeitar
-    ) {
+    async function avaliarInscricao(id, status, botaoAprovar, botaoRejeitar) {
 
         const confirmacao = status === "approved"
             ? "Deseja aprovar esta inscrição?"
@@ -326,15 +294,44 @@ const botaoEnviarNotificacao =
 
             console.error("Erro ao avaliar inscrição:", erro);
 
-            alert(
-                "Não foi possível atualizar a inscrição. Tente novamente."
-            );
+            alert("Não foi possível atualizar a inscrição. Tente novamente.");
 
             botaoAprovar.disabled = false;
             botaoRejeitar.disabled = false;
-
         }
+    }
 
+    // ATUALIZAR SELETOR DE DESTINATÁRIOS
+    function atualizarSelectNotificacao() {
+
+        if (!seletorNotificacao) return;
+
+        seletorNotificacao.innerHTML = "";
+
+        const opcaoInicial = document.createElement("option");
+        opcaoInicial.value = "";
+        opcaoInicial.textContent = "Selecione um aluno";
+
+        seletorNotificacao.appendChild(opcaoInicial);
+
+        alunos.forEach(function (aluno) {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = aluno.id;
+            opcao.textContent = aluno.nome || "Aluno sem nome";
+
+            seletorNotificacao.appendChild(opcao);
+        });
+
+        if (alunos.length === 0) {
+
+            const opcao = document.createElement("option");
+            opcao.value = "";
+            opcao.textContent = "Nenhum aluno aprovado disponível";
+
+            seletorNotificacao.appendChild(opcao);
+        }
     }
 
     // CARREGAR ALUNOS APROVADOS E PONTUAÇÃO
@@ -354,16 +351,10 @@ const botaoEnviarNotificacao =
             alunos = [];
 
             await atualizarResumo();
-
-            listaAlunos.innerHTML = `
-                <div class="nenhum-aluno">
-                    <h3>Nenhum aluno aprovado ainda</h3>
-                    <p>Os alunos aprovados aparecerão nesta lista.</p>
-                </div>
-            `;
+            mostrarAlunos();
+            atualizarSelectNotificacao();
 
             return;
-
         }
 
         const ids = inscricoes.map(function (inscricao) {
@@ -383,7 +374,6 @@ const botaoEnviarNotificacao =
                 participacao: aluno.participation,
                 pontos: 0
             };
-
         });
 
         // BUSCAR PONTUAÇÃO DOS ALUNOS
@@ -409,14 +399,12 @@ const botaoEnviarNotificacao =
                     .reduce(function (total, registro) {
                         return total + Number(registro.points || 0);
                     }, 0);
-
             });
-
         }
 
         await atualizarResumo();
         mostrarAlunos();
-
+        atualizarSelectNotificacao();
     }
 
     // ATUALIZAR RESUMO
@@ -441,37 +429,27 @@ const botaoEnviarNotificacao =
 
         if (idsAlunos.length > 0) {
 
-            // CONTAR PRESENÇAS
             const { count: presencas, error: erroPresencas } = await db
                 .from("attendance")
-                .select("student_id", {
-                    count: "exact",
-                    head: true
-                })
+                .select("student_id", { count: "exact", head: true })
                 .in("student_id", idsAlunos);
 
             if (erroPresencas) throw erroPresencas;
 
             totalPresencas = presencas || 0;
 
-            // CONTAR ATIVIDADES CONCLUÍDAS
             const { count: conclusoes, error: erroConclusoes } = await db
                 .from("activity_completions")
-                .select("student_id", {
-                    count: "exact",
-                    head: true
-                })
+                .select("student_id", { count: "exact", head: true })
                 .in("student_id", idsAlunos);
 
             if (erroConclusoes) throw erroConclusoes;
 
             totalConclusoes = conclusoes || 0;
-
         }
 
         document.getElementById("total-registros").textContent =
             totalPresencas + totalConclusoes;
-
     }
 
     // NORMALIZAR PARTICIPAÇÃO
@@ -496,7 +474,6 @@ const botaoEnviarNotificacao =
         }
 
         return texto;
-
     }
 
     // CRIAR CONTROLES DE PRESENÇA E CONCLUSÃO
@@ -505,13 +482,9 @@ const botaoEnviarNotificacao =
         const area = document.createElement("div");
         area.className = "registro-atividade-aluno";
 
-        const titulo = criarTexto(
-            "h4",
-            "",
-            "Registrar participação"
+        area.appendChild(
+            criarTexto("h4", "", "Registrar participação")
         );
-
-        area.appendChild(titulo);
 
         const seletor = document.createElement("select");
         seletor.className = "seletor-atividade-aluno";
@@ -519,6 +492,7 @@ const botaoEnviarNotificacao =
         const opcaoInicial = document.createElement("option");
         opcaoInicial.value = "";
         opcaoInicial.textContent = "Selecione uma atividade";
+
         seletor.appendChild(opcaoInicial);
 
         const atividadesAtivas = atividades.filter(function (atividade) {
@@ -528,17 +502,14 @@ const botaoEnviarNotificacao =
         atividadesAtivas.forEach(function (atividade) {
 
             const opcao = document.createElement("option");
-
             opcao.value = atividade.id;
 
             const categoria =
                 atividade.category === "esporte" ? "Esporte" : "Estudo";
 
-            opcao.textContent =
-                `${atividade.title} — ${categoria}`;
+            opcao.textContent = `${atividade.title} — ${categoria}`;
 
             seletor.appendChild(opcao);
-
         });
 
         area.appendChild(seletor);
@@ -568,29 +539,17 @@ const botaoEnviarNotificacao =
         botaoConclusao.disabled = atividadesAtivas.length === 0;
 
         botaoPresenca.addEventListener("click", function () {
-
             registrarAtividade(
-                aluno,
-                seletor,
-                "attendance",
-                botaoPresenca,
-                botaoConclusao,
-                mensagem
+                aluno, seletor, "attendance",
+                botaoPresenca, botaoConclusao, mensagem
             );
-
         });
 
         botaoConclusao.addEventListener("click", function () {
-
             registrarAtividade(
-                aluno,
-                seletor,
-                "completion",
-                botaoPresenca,
-                botaoConclusao,
-                mensagem
+                aluno, seletor, "completion",
+                botaoPresenca, botaoConclusao, mensagem
             );
-
         });
 
         botoes.appendChild(botaoPresenca);
@@ -600,7 +559,6 @@ const botaoEnviarNotificacao =
         area.appendChild(mensagem);
 
         return area;
-
     }
 
     // REGISTRAR PRESENÇA OU CONCLUSÃO NO BANCO
@@ -616,12 +574,9 @@ const botaoEnviarNotificacao =
         const atividadeId = seletor.value;
 
         if (!atividadeId) {
-
             mensagem.textContent =
                 "Selecione uma atividade antes de registrar.";
-
             return;
-
         }
 
         const nomeRegistro = tipo === "attendance"
@@ -675,9 +630,7 @@ const botaoEnviarNotificacao =
 
             botaoPresenca.disabled = false;
             botaoConclusao.disabled = false;
-
         }
-
     }
 
     // MOSTRAR ALUNOS APROVADOS
@@ -700,7 +653,6 @@ const botaoEnviarNotificacao =
                 filtro === "todos" || participacao === filtro;
 
             return nomeCorresponde && filtroCorresponde;
-
         });
 
         if (filtrados.length === 0) {
@@ -713,7 +665,6 @@ const botaoEnviarNotificacao =
             `;
 
             return;
-
         }
 
         filtrados.forEach(function (aluno) {
@@ -743,7 +694,6 @@ const botaoEnviarNotificacao =
                 )
             );
 
-            // MOSTRAR PONTOS DO ALUNO
             const pontos = document.createElement("div");
             pontos.className = "pontos-aluno";
 
@@ -760,16 +710,10 @@ const botaoEnviarNotificacao =
             informacoes.appendChild(pontos);
 
             cartao.appendChild(informacoes);
-
-            // CONTROLES DE REGISTRO
-            cartao.appendChild(
-                criarControlesRegistro(aluno)
-            );
+            cartao.appendChild(criarControlesRegistro(aluno));
 
             listaAlunos.appendChild(cartao);
-
         });
-
     }
 
     // FORMATAR DATA E HORÁRIO
@@ -781,7 +725,6 @@ const botaoEnviarNotificacao =
             dateStyle: "short",
             timeStyle: "short"
         });
-
     }
 
     // CARREGAR ATIVIDADES
@@ -830,27 +773,15 @@ const botaoEnviarNotificacao =
                 );
 
                 dados.appendChild(
-                    criarTexto(
-                        "p",
-                        "",
-                        atividade.description || "Sem descrição."
-                    )
+                    criarTexto("p", "", atividade.description || "Sem descrição.")
                 );
 
                 dados.appendChild(
-                    criarTexto(
-                        "p",
-                        "",
-                        `Início: ${formatarData(atividade.starts_at)}`
-                    )
+                    criarTexto("p", "", `Início: ${formatarData(atividade.starts_at)}`)
                 );
 
                 dados.appendChild(
-                    criarTexto(
-                        "p",
-                        "",
-                        `Término: ${formatarData(atividade.ends_at)}`
-                    )
+                    criarTexto("p", "", `Término: ${formatarData(atividade.ends_at)}`)
                 );
 
                 dados.appendChild(
@@ -863,14 +794,10 @@ const botaoEnviarNotificacao =
 
                 cartao.appendChild(dados);
                 listaAtividades.appendChild(cartao);
-
             });
-
         }
 
-        // ATUALIZAR OS CONTROLES DOS CARTÕES DE ALUNOS
         mostrarAlunos();
-
     }
 
     // CADASTRAR NOVA ATIVIDADE
@@ -894,12 +821,9 @@ const botaoEnviarNotificacao =
             document.getElementById("atividade-fim").value;
 
         if (!titulo || !categoria || !inicio || !fim) {
-
             mensagemAtividade.textContent =
                 "Preencha todos os campos obrigatórios.";
-
             return;
-
         }
 
         const dataInicio = new Date(inicio);
@@ -909,21 +833,15 @@ const botaoEnviarNotificacao =
             Number.isNaN(dataInicio.getTime()) ||
             Number.isNaN(dataFim.getTime())
         ) {
-
             mensagemAtividade.textContent =
                 "Informe datas e horários válidos.";
-
             return;
-
         }
 
         if (dataFim <= dataInicio) {
-
             mensagemAtividade.textContent =
                 "O término deve ser posterior ao início.";
-
             return;
-
         }
 
         const botaoEnviar =
@@ -937,13 +855,11 @@ const botaoEnviarNotificacao =
         try {
 
             const { data, error } = await db.rpc("create_activity", {
-
                 p_title: titulo,
                 p_description: descricao || null,
                 p_category: categoria,
                 p_starts_at: dataInicio.toISOString(),
                 p_ends_at: dataFim.toISOString()
-
             });
 
             if (error) throw error;
@@ -970,71 +886,70 @@ const botaoEnviarNotificacao =
 
             botaoEnviar.disabled = false;
             botaoEnviar.textContent = "Cadastrar atividade";
-
         }
-
     });
-// ENVIAR NOTIFICAÇÃO PARA UM ALUNO
 
-formularioNotificacao.addEventListener("submit", async function (event) {
+    // ENVIAR NOTIFICAÇÃO PARA UM ALUNO
+    if (formularioNotificacao) {
 
-    event.preventDefault();
+        formularioNotificacao.addEventListener("submit", async function (event) {
 
-    const alunoId = seletorNotificacao.value;
-    const titulo = tituloNotificacao.value.trim();
-    const mensagem = textoNotificacao.value.trim();
+            event.preventDefault();
 
-    if (!alunoId || !titulo || !mensagem) {
+            const alunoId = seletorNotificacao.value;
+            const titulo = tituloNotificacao.value.trim();
+            const mensagem = textoNotificacao.value.trim();
 
-        mensagemNotificacao.textContent =
-            "Preencha todos os campos antes de enviar.";
-
-        return;
-
-    }
-
-    botaoEnviarNotificacao.disabled = true;
-    botaoEnviarNotificacao.textContent = "Enviando...";
-
-    mensagemNotificacao.textContent = "";
-
-    try {
-
-        const { data, error } = await db.rpc(
-            "send_notification",
-            {
-                p_user_id: alunoId,
-                p_title: titulo,
-                p_message: mensagem
+            if (!alunoId || !titulo || !mensagem) {
+                mensagemNotificacao.textContent =
+                    "Preencha todos os campos antes de enviar.";
+                return;
             }
-        );
 
-        if (error) throw error;
+            botaoEnviarNotificacao.disabled = true;
+            botaoEnviarNotificacao.textContent = "Enviando...";
 
-        if (!data) {
-            throw new Error("A notificação não foi confirmada.");
-        }
+            mensagemNotificacao.textContent = "";
 
-        mensagemNotificacao.textContent =
-            "Notificação enviada com sucesso!";
+            try {
 
-        formularioNotificacao.reset();
+                const { data, error } = await db.rpc(
+                    "send_notification",
+                    {
+                        p_user_id: alunoId,
+                        p_title: titulo,
+                        p_message: mensagem
+                    }
+                );
 
-    } catch (erro) {
+                if (error) throw error;
 
-        console.error("Erro ao enviar notificação:", erro);
+                if (!data) {
+                    throw new Error("A notificação não foi confirmada.");
+                }
 
-        mensagemNotificacao.textContent =
-            erro.message || "Não foi possível enviar a notificação.";
+                mensagemNotificacao.textContent =
+                    "Notificação enviada com sucesso!";
 
-    } finally {
+                formularioNotificacao.reset();
 
-        botaoEnviarNotificacao.disabled = false;
-        botaoEnviarNotificacao.textContent = "Enviar notificação";
+                atualizarSelectNotificacao();
 
+            } catch (erro) {
+
+                console.error("Erro ao enviar notificação:", erro);
+
+                mensagemNotificacao.textContent =
+                    erro.message || "Não foi possível enviar a notificação.";
+
+            } finally {
+
+                botaoEnviarNotificacao.disabled = false;
+                botaoEnviarNotificacao.textContent = "Enviar notificação";
+            }
+        });
     }
 
-});
     // PESQUISA E FILTROS
     pesquisarAluno.addEventListener("input", mostrarAlunos);
     filtroParticipacao.addEventListener("change", mostrarAlunos);
@@ -1045,16 +960,12 @@ formularioNotificacao.addEventListener("submit", async function (event) {
         const { error } = await db.auth.signOut();
 
         if (error) {
-
             alert("Não foi possível sair da conta.");
             console.error(error);
-
             return;
-
         }
 
         window.location.href = "login.html";
-
     });
 
 });
