@@ -955,7 +955,67 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
     });
+// ENVIAR NOTIFICAÇÃO PARA UM ALUNO
 
+formularioNotificacao.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const alunoId = seletorNotificacao.value;
+    const titulo = tituloNotificacao.value.trim();
+    const mensagem = textoNotificacao.value.trim();
+
+    if (!alunoId || !titulo || !mensagem) {
+
+        mensagemNotificacao.textContent =
+            "Preencha todos os campos antes de enviar.";
+
+        return;
+
+    }
+
+    botaoEnviarNotificacao.disabled = true;
+    botaoEnviarNotificacao.textContent = "Enviando...";
+
+    mensagemNotificacao.textContent = "";
+
+    try {
+
+        const { data, error } = await db.rpc(
+            "send_notification",
+            {
+                p_user_id: alunoId,
+                p_title: titulo,
+                p_message: mensagem
+            }
+        );
+
+        if (error) throw error;
+
+        if (!data) {
+            throw new Error("A notificação não foi confirmada.");
+        }
+
+        mensagemNotificacao.textContent =
+            "Notificação enviada com sucesso!";
+
+        formularioNotificacao.reset();
+
+    } catch (erro) {
+
+        console.error("Erro ao enviar notificação:", erro);
+
+        mensagemNotificacao.textContent =
+            erro.message || "Não foi possível enviar a notificação.";
+
+    } finally {
+
+        botaoEnviarNotificacao.disabled = false;
+        botaoEnviarNotificacao.textContent = "Enviar notificação";
+
+    }
+
+});
     // PESQUISA E FILTROS
     pesquisarAluno.addEventListener("input", mostrarAlunos);
     filtroParticipacao.addEventListener("change", mostrarAlunos);
