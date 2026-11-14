@@ -36,13 +36,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const { data, error } = await db
             .from("notifications")
-            .select("id, user_id, titulo, mensagem, read_at, criado_em")
+            .select("id, user_id, title, message, read_at, created_at")
             .eq("user_id", usuario.id)
-            .order("criado_em", { ascending: false });
+            .order("created_at", { ascending: false });
 
         if (error) {
             console.error("Erro ao buscar notificações:", error);
-
             resumo.textContent = "Não foi possível carregar os avisos.";
             botaoMarcarTodas.disabled = true;
             return;
@@ -115,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         notificacoes.forEach(function (notificacao) {
 
             const cartao = document.createElement("article");
-
             cartao.className = "notificacao";
 
             if (!notificacao.read_at) {
@@ -124,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             const icone = document.createElement("div");
             icone.className = "icone-notificacao";
-            icone.textContent = escolherIcone(notificacao.titulo);
+            icone.textContent = escolherIcone(notificacao.title);
 
             const texto = document.createElement("div");
             texto.className = "texto-notificacao";
@@ -134,13 +132,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             categoria.textContent = "CONECTA+";
 
             const titulo = document.createElement("h3");
-            titulo.textContent = notificacao.titulo;
+            titulo.textContent = notificacao.title;
 
             const mensagem = document.createElement("p");
-            mensagem.textContent = notificacao.mensagem;
+            mensagem.textContent = notificacao.message;
 
             const data = document.createElement("small");
-            data.textContent = formatarData(notificacao.criado_em);
+            data.textContent = formatarData(notificacao.created_at);
 
             texto.appendChild(categoria);
             texto.appendChild(titulo);
@@ -154,7 +152,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 const ponto = document.createElement("span");
                 ponto.className = "ponto-notificacao";
-
                 cartao.appendChild(ponto);
 
                 const botaoLer = document.createElement("button");
@@ -170,7 +167,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             lista.appendChild(cartao);
-
         });
     }
 
@@ -216,10 +212,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         await carregarNotificacoes();
     });
-
-    // SAIR DA PLATAFORMA
-
-    const botaoSair = document.querySelector(".voltar-notificacoes");
 
     // CARREGAR DADOS
 
