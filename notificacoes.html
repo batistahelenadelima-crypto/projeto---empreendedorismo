@@ -44,98 +44,25 @@
 
                 <div>
                     <h2>Seus avisos</h2>
-                    <p>Confira as atualizações do projeto.</p>
+                    <p id="resumo-notificacoes">
+                        Carregando suas notificações...
+                    </p>
                 </div>
 
-                <button id="marcar-todas">
+                <button id="marcar-todas" type="button">
                     Marcar todas como lidas
                 </button>
 
             </div>
 
-            <div class="lista-notificacoes" id="lista-notificacoes">
-
-                <article class="notificacao nao-lida">
-
-                    <div class="icone-notificacao">🏐</div>
-
-                    <div class="texto-notificacao">
-
-                        <span class="categoria-notificacao">
-                            ESPORTES
-                        </span>
-
-                        <h3>Lembrete de treino</h3>
-
-                        <p>
-                            Você tem uma atividade esportiva programada
-                            para amanhã. Não se esqueça!
-                        </p>
-
-                        <small>Exemplo de notificação</small>
-
-                    </div>
-
-                    <span class="ponto-notificacao"></span>
-
-                </article>
-
-                <article class="notificacao nao-lida">
-
-                    <div class="icone-notificacao">📚</div>
-
-                    <div class="texto-notificacao">
-
-                        <span class="categoria-notificacao">
-                            ESTUDOS
-                        </span>
-
-                        <h3>Grupo de estudos</h3>
-
-                        <p>
-                            Um encontro de estudos está previsto
-                            para amanhã.
-                        </p>
-
-                        <small>Exemplo de notificação</small>
-
-                    </div>
-
-                    <span class="ponto-notificacao"></span>
-
-                </article>
-
-                <article class="notificacao">
-
-                    <div class="icone-notificacao">✨</div>
-
-                    <div class="texto-notificacao">
-
-                        <span class="categoria-notificacao">
-                            CONECTA+
-                        </span>
-
-                        <h3>Bem-vindo ao Conecta+!</h3>
-
-                        <p>
-                            Aqui você poderá acompanhar seus avisos
-                            e novidades do projeto.
-                        </p>
-
-                        <small>Notificação de boas-vindas</small>
-
-                    </div>
-
-                </article>
-
-            </div>
+            <div class="lista-notificacoes" id="lista-notificacoes"></div>
 
             <div class="sem-notificacoes" id="sem-notificacoes"
                 style="display: none;">
 
                 <span>🔔</span>
                 <h3>Tudo em dia!</h3>
-                <p>Você não possui notificações pendentes.</p>
+                <p>Você não possui notificações no momento.</p>
 
             </div>
 
@@ -147,39 +74,10 @@
 
     </main>
 
-    <script>
-
-        const botaoMarcarTodas = document.getElementById("marcar-todas");
-
-        const notificacoes = document.querySelectorAll(".notificacao");
-
-        const mensagemVazia = document.getElementById("sem-notificacoes");
-
-        botaoMarcarTodas.addEventListener("click", function () {
-
-            notificacoes.forEach(function (notificacao) {
-
-                notificacao.classList.remove("nao-lida");
-
-                const ponto = notificacao.querySelector(".ponto-notificacao");
-
-                if (ponto) {
-                    ponto.remove();
-                }
-
-            });
-
-            mensagemVazia.style.display = "block";
-
-            botaoMarcarTodas.disabled = true;
-
-            botaoMarcarTodas.textContent = "Todas as notificações foram lidas";
-
-        });
-
-    </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="supabase.js"></script>
+    <script src="notificacoes.js"></script>
+
 </body>
 </html>
